@@ -1,0 +1,35 @@
+{
+  "name": "datetime-object",
+  "version": "0.9.0",
+  "description": "to work easily with dates & times",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sylvain59650/datetime-object.git"
+  },
+  "keywords": [
+    "javascript",
+    "DateTime",
+    "moment",
+    "object",
+    "duration",
+    "TimeSpan",
+    "Locale"
+  ],
+  "author": "Sylvain Longepée",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Sylvain59650/datetime-object/issues"
+  },
+  "homepage": "https://github.com/Sylvain59650/datetime-object#readme",
+  "dependencies": {
+    "moment": "^2.20.1",
+    "moment-round": "^1.0.1"
+  }
+}

@@ -337,22 +337,26 @@ DateTime.prototype.nearestSaturday = function(direction) {
   return this.nearest(6, direction);
 }
 
-DateTime.prototype.asMoment = function() {
+DateTime.prototype.toMoment = function() {
   return this.mmt.clone();
 }
 
-DateTime.prototype.asDate = function() {
+DateTime.prototype.toDate = function() {
   return this.mmt.toDate();
 }
 
-DateTime.prototype.asObject = function() {
+DateTime.prototype.toObject = function() {
   return this.mmt.toObject();
 }
 
 
 /* static */
 DateTime.parse = function(st, formats) {
-  return new DateTime(moment(st, formats));
+  var mmt = moment(st, formats);
+  if (mmt.isValid()) {
+    return new DateTime(mmt);
+  }
+  return null;
 }
 
 DateTime.tryParse = function(st, formats) {
@@ -697,3 +701,12 @@ moment.locale('de');
 console.log(moment().format('LLLL')); // 'Freitag, 24. Juni 2016 01:42'
 console.log(moment().format('LLLL', "fr"));
 console.log(new DateTime().Locale());
+
+
+now = DateTime.now();
+console.log(now.toString());
+var timestamp = now.toUnixEpoch();
+console.log(timestamp);
+
+var now2 = DateTime.fromUnixEpoch(timestamp);
+console.log(now2.toString());
