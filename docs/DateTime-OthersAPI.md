@@ -18,7 +18,7 @@
 
 <article class="docs-section"> 
 
-# [Others API](#/api/)
+# [Others API Section](#/api/)
 - [now](#/manipulating/now/)
 - [today](#/manipulating/today/) 
 - [add](#/manipulating/add/)
@@ -55,7 +55,9 @@
 - [diff](#/displaying/diff/)
 <article>
 
-## [now](#/manipulating/now/) 
+<a name="#/manipulating/now/">
+
+## now 
 <code>
 
     var dt=DateTime.now();
