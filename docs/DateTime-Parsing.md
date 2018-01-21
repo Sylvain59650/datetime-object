@@ -20,29 +20,26 @@
 
 # [Section Parsing](#/parsing/)
 - [parse](#/parse/)
-- [parseZone](#/parsing/parse-zone/)
-- [isValid](#/parsing/isValid/) 
+- [tryParse](#tryparse)
+- [parseZone](#parsezone)
+- [isValid](#isvalid) 
+- [The RFC 2822 date time format](#rfc2822)
 
 <article class="docs-method">
 
-# [parse](#/parse/)
+# parse
+
 <div class="docs-method-prose">
-<code><pre>
+<code>
+
     DateTime.parse(string);
     DateTime.parse(string,format);
     DateTime.parse(string,[formats]);
-</pre>
 </code>
-The `DateTime` prototype is exposed through `DateTime.fn`. If you want to add your own functions, that is where you would put them.
-
-For ease of reference, any method on the `DateTime.prototype` will be referenced in the docs as `DateTime#method`. So `DateTime.prototype.toString` == `DateTime.fn.toString` == `DateTime#toString`.
-
 </div>
-
 </article>
 
 <article class="docs-method">
-
 
 <div class="docs-method-prose">
 
@@ -54,7 +51,7 @@ When creating a DateTime from a string, we first check if the string matches kno
 
 For consistent results parsing anything other than ISO 8601 strings, you should use [String + Format](#/parsing/string-format/).
 
-#### Supported ISO 8601 strings
+## Supported ISO 8601 strings
 
 An ISO 8601 string requires a date part.
 
@@ -99,7 +96,8 @@ If a time part is included, an offset from UTC can also be included as `+-HH:mm`
 
 If a string does not match any of the above formats and is not able to be parsed with `Date.parse`, `DateTime#isValid` will return false.
 
-#### The RFC 2822 date time format
+<a name="rfc2822"></a>
+## The RFC 2822 date time format
 
 Before parsing a RFC 2822 date time the string is cleansed to remove any comments and/or newline characters. The additional characters are legal in the format but add nothing to creating a valid DateTime instance.
 
@@ -126,15 +124,44 @@ After cleansing, the string is validated in the following space-separated sectio
     [*] See [section 4.3](https://tools.ietf.org/html/rfc2822#section-4.3) of the specification for details.
 
 The parser also confirms that the day-of-week (when included) is consistent with the date.
-
 </div>
-
 </article>
 
 
+<article>
+
+# tryParse
+
+<div class="docs-method-prose">
+If the parsing succeeded, return the new DateTime
+
+  if the parsing fails, the method returns false and logs the cause of the rejection
+</div>
+
+<div class="docs-method-signature">
+
+    DateTime.tryParse = function(st, formats)
+</div>
+
+<code>
+  
+    if (DateTime.tryParse("30/02/2018","DD/MM/YYYY")) {
+        unreachable code because invalid date
+    }
+</code>
+<code>
+    
+    var dt=DateTime.tryParse("28/02/2018","DD/MM/YYYY");
+     if (dt) {
+         console.log(dt.toString("DD/MM/YYYY"));
+     }
+</code>
+</article>
+
 <article class="docs-method">
 
-## [parseZone](#/parsing/parse-zone/)
+## parseZone
+
 <div class="docs-method-prose">
 
 <div class="docs-method-signature">
@@ -170,9 +197,10 @@ It also allows you to pass locale and strictness arguments.
 
 </article>
 
+
 <article class="docs-method">
 
-## [isValid](#/parsing/isValid/) 
+## isValid 
 <div class="docs-method-prose">
 You can check whether the DateTime considers the date invalid using `DateTime#isValid`. You can check the metrics used by `#isValid` using `DateTime#parsingFlags`, which returns an object.
 

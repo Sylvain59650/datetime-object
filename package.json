@@ -2,7 +2,7 @@
   "name": "datetime-object",
   "version": "0.9.0",
   "description": "to work easily with dates & times",
-  "main": "index.js",
+  "main": "tests/nodejs.spec.js",
   "directories": {
     "doc": "docs"
   },
@@ -31,5 +31,16 @@
   "dependencies": {
     "moment": "^2.20.1",
     "moment-round": "^1.0.1"
+  },
+  "devDependencies": {
+    "del": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-clean": "^0.4.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-debug": "^3.2.0",
+    "gulp-uglify": "^3.0.0",
+    "gulp-umd": "^0.2.1",
+    "gulp-util": "^3.0.8",
+    "gulp-watch": "^5.0.0"
   }
 }

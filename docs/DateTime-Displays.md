@@ -6,7 +6,7 @@
  <div class="docs-content">
 
 # Main Contents
-- [Installation](Installation.md#/use-it/)
+- [Installation](README.md)
 - [Constructors](DateTime-Constructors.md)
 - [Parsing](DateTime-Parsing.md)
 - [Converters](DateTime-Converters.md)
@@ -20,11 +20,17 @@
 <article class="docs-section"> 
 
 # This Section
--  [toString](#/displaying/toString/)
+-  [toString](#tostring)
+    - [String Format](#stringformat)
+    - [Localized formats](#localizedformats)
+    - [Escaping characters](#escapingcharacters)
+    - [Formatting Speed](#formattingspeed)
+    - [Other tokens](#othertokens)
+    - [Default format](#defaultformat)    
 
 <article class="docs-method">
 
-## [toString](#/displaying/toString/)
+## toString
 <div class="docs-method-prose">
 
 <div class="docs-method-signature">
@@ -40,6 +46,7 @@ This is the most robust display option. It takes a string of tokens and replaces
     new DateTime().toString("dddd, MMMM Do YYYY, h:mm:ss a"); 
     new DateTime().toString("ddd, hA");         
 
+<a name="stringformat"></a>
 <table class="table table-striped table-bordered">
 <tbody>
 <tr>
@@ -322,7 +329,8 @@ This is the most robust display option. It takes a string of tokens and replaces
 </tbody>
 </table>
 
-#### Localized formats
+<a name="localizedformats"></a>
+### Localized formats
 
 Because preferred formatting differs based on locale, there are a few tokens that can be used to format a DateTime based on its locale.
 
@@ -331,7 +339,7 @@ There are upper and lower case variations on the same formats. The lowercase ver
 <table class="table table-striped table-bordered">
 <tbody>
 <tr>
-<td>**Time**</td>
+<td> **Time** </td>
 <td>LT</td>
 <td>8:30 PM</td>
 </tr>
@@ -383,7 +391,8 @@ There are upper and lower case variations on the same formats. The lowercase ver
 </tbody>
 </table>
 
-#### Escaping characters
+<a name="escapingcharacters"></a>
+### Escaping characters
 
 To escape characters in format strings, you can wrap the characters in square brackets.
 
@@ -395,17 +404,20 @@ To escape characters in format strings, you can wrap the characters in square br
 
 For a breakdown of a few different date formatting tokens across different locales, see [this chart of date formatting tokens.](https://docs.google.com/spreadsheet/ccc?key=0AtgZluze7WMJdDBOLUZfSFIzenIwOHNjaWZoeGFqbWc&hl=en_US#gid=0)
 
-#### Formatting speed
+<a name="formattingspeed"></a>
+### Formatting speed
 
 To compare DateTime.js formatting speed against other libraries, check out [this comparison against other libraries](https://jsperf.com/date-formatting/49).
 
-#### Other tokens
+<a name="othertokens"></a>
+### Other tokens
 
 If you are more comfortable working with strftime instead of LDML-like parsing tokens, you can use Ben Oakes' plugin. [benjaminoakes/DateTime-strftime](https://github.com/benjaminoakes/DateTime-strftime).
 
-#### Default format
+<a name="defaultformat"></a>
+### Default format
 
-calling `DateTime#format` without a format will default to `DateTime.defaultFormat`. Out of the box, `DateTime.defaultFormat` is the ISO8601 format `YYYY-MM-DDTHH:mm:ssZ`.
+calling `DateTime#toString` without a format will default to `DateTime.defaultFormat`. Out of the box, `DateTime.defaultFormat` is the ISO8601 format `YYYY-MM-DDTHH:mm:ssZ`.
 
  when in UTC mode, the default format is governed by `DateTime.defaultFormatUtc` which is in the format `YYYY-MM-DDTHH:mm:ss[Z]`. This returns `Z` as the offset, instead of `+00:00`.
 

@@ -18,44 +18,65 @@
 
 <article class="docs-section"> 
 
-# [Others API Section](#/api/)
-- [now](#/manipulating/now/)
-- [today](#/manipulating/today/) 
-- [add](#/manipulating/add/)
-- [round](#/round/)
-- [ceil](#/ceil/)
-- [floor](#/floor/)
-- [isBefore](#/query/isBefore/) 
-- [isAfter](#/query/isAfter/) 
-- [isSame](#/query/isSame/) 
-- [isSameOrBefore](#/query/isSameOrBefore/) 
-- [isSameOrAfter](#/query/isSameOrAfter/) 
-- [isBetween](#/query/isBetween/) 
-- [seconds()](#/get-set/second/)
-- [milliseconds](#/get-set/milliseconds/) 
-- [minutes](#/get-set/minutes/)
-- [hours](#/get-set/hours/) 
-- [weekday (Locale Aware)](#/get-set/weekday/)
-- [isoWeekday](#/get-set/isoWeekday/)
-- [dayOfYear](#/get-set/dayOfYear/)
-- [week](#/get-set/week/)
-- [isoWeek](#/get-set/isoWeek/)
-- [month](#/get-set/month/) 
-- [year](#/get-set/year/) 
-- [weekYear](#/get-set/weekYear/)
-- [isoWeekYear](#/get-set/isoWeekYear/) 
-- [weeksInYear](#/get-set/weeksInYear/) 
-- [isoWeeksInYear](#/get-set/isoWeeksInYear/)
-- [addYears](#/manipulating/addYears/)
-- [addMonths](#/manipulating/addMonths/)
-- [addDays](#/manipulating/addDays/) 
-- [addHours](#/manipulating/addHours/) 
-- [addMinutes](#/manipulating/addMinutes/) 
-- [addSeconds](#/manipulating/addSeconds/) 
-- [diff](#/displaying/diff/)
+# [Others API Section](#/api)
+- [Create new DateTime]()
+    - [add](#add)
+    - [addYears](#addyears)
+    - [addMonths](#addmonths)
+    - [addDays](#adddays) 
+    - [addHours](#addhours) 
+    - [addMinutes](#addminutes) 
+    - [addSeconds](#addseconds) 
+    - [ceil](#ceil)
+    - [floor](#floor)
+    - [now](#now)
+    - [today](#today) 
+    - [round](#round)
+    - [firstDayOfMonth](#firstdayofmonth)
+    - [lastDayOfMonth](#lastdayofmonth)
+    - [nearestSunday,nearestMonday,...](#nearestsunday)
+    - [nearestMonday](#nearestmonday)
+    - [nearestTuesday](#nearesttuesday)
+    - [nearestWednesday](#nearestwednesday)
+    - [nearestThursday](#nearestthursday)
+    - [nearestFriday](#nearestfriday)
+    - [nearestSaturday](#nearestsaturday)
+
+
+
+- [Comparing DateTimes]()
+    - [compare](#compare)
+    - [diff](#diff)
+    - [isAfter](#isafter) 
+    - [isBefore](#isbefore) 
+    - [isSame](#issame) 
+    - [isSameOrAfter](#issameorafter) 
+    - [isSameOrBefore](#issameorbefore) 
+    - [isBetween](#isbetween)
+
+- [Operations on a DateTime instance]()
+    - [seconds](#seconds)
+    - [milliseconds](#milliseconds) 
+    - [minutes](#minutes)
+    - [hours](#hours) 
+    - [weekday (Locale Aware)](#weekday)
+    - [isoWeekday](#isoweekday)
+    - [dayOfWeek](#dayofweek)
+    - [dayOfYear](#dayofyear)
+    - [week](#week)
+    - [isoWeek](#isoWeek)
+    - [month](#month) 
+    - [year](#year) 
+    - [weekYear](#weekyear)
+    - [isoWeekYear](#isoweekyear) 
+    - [weeksInYear](#weeksinyear) 
+    - [isoWeeksInYear](#isoweeksinyear)
+
+- [Statics methods]()
+  - [isLeapYear](#isleapyear)
+  - [daysInMonth](#daysinmonth)
 <article>
 
-<a name="#/manipulating/now/">
 
 ## now 
 <code>
@@ -66,7 +87,7 @@
 
 <article>
 
-## [today](#/manipulating/today/) 
+## today
 <code>
 
     var dt=DateTime.today();
@@ -75,7 +96,7 @@
 
 <article>
 
-## [round](#/round/)
+## round
 <div class="method-prototype">
 
     DateTime.prototype.round(integer,interval)
@@ -96,7 +117,7 @@ round the instance DateTime to a given interval.
 
 <article>
 
-## [ceil](#/ceil/)
+## ceil
 <div class="method-prototype">
 
     DateTime.prototype.ceil(integer,interval)
@@ -117,7 +138,7 @@ set the instance DateTime to the near ceil according a given interval.
 
 <article>
 
-## [floor](#/floor/)
+## floor
 <div class="method-prototype">
 
     DateTime.prototype.floor(integer,interval)
@@ -136,135 +157,169 @@ set the instance DateTime to the near floor according a given interval.
 </div>
 </article>
 
-<article class="docs-method">
+<article>
+<a name="nearestsunday"></a>
 
-## [isBefore](#/query/isBefore/) 
+## nearestSunday 
+### nearestMonday,nearestTuesday,nearestWednesday,nearestThursday,nearestFriday,nearestSaturday
+<div class="method-prototype">
+
+    DateTime.prototype.nearestSunday(intDirection)
+    DateTime.prototype.nearestMonday(intDirection)
+    DateTime.prototype.nearestTuesday(intDirection)
+    DateTime.prototype.nearestWednesday(intDirection)
+    DateTime.prototype.nearestThursday(intDirection)
+    DateTime.prototype.nearestFriday(intDirection)
+    DateTime.prototype.nearestSaturday(intDirection)
+
+</div>
 <div class="docs-method-prose">
 
+returns the closest date corresponding to the day of the week, in the future or the past according to the parameter intDirection. 
+</div>
+<div class="usage">
+
+    var dt = new DateTime("21/01/2018","DD/MM/YYYY"); ==> Sunday 
+    var nextSaturday=dt.nearestSaturday(1);
+    var prevWenesday=dt.nearestWednesday(-1); 
+
+    var dt2=dt.nearestSunday(1) ==> "21/01/2018" ~dt
+    var dt3=dt.nearestSunday(-1) ==> "14/01/2018"
+</div>
+</article>
+
+<article>
+
+
+
+
+<article>
+
+<a name="isbefore"></a>
+
+## isBefore
+<div class="docs-method-prose">
+Check if a DateTime is before another DateTime.
+</div>
 <div class="docs-method-signature">
 
     new DateTime().isBefore(DateTime);
- 
-</div>
-
-Check if a DateTime is before another DateTime.
+ </div>
+<code>
 
     new DateTime('2010-10-20').isBefore(new DateTime('2010-10-21')); 
-
-</div>
-
+</code>    
 </article>
 
-<article class="docs-method">
+<article>
 
-## [isSame](#/query/isSame/) 
+<a name="issame"></a>
+## isSame
 <div class="docs-method-prose">
-
+Check if a DateTime is the same as another DateTime.
+</div>
 <div class="docs-method-signature">
 
     new DateTime().isSame(DateTime);
-
 </div>
 
-Check if a DateTime is the same as another DateTime.
 <code>
 
     new DateTime('2010-10-20').isSame(new DateTime('2010-10-20')); 
 </code>
-</div>
-
 </article>
 
-<article class="docs-method">
+<article>
 
-## [isAfter](#/query/isAfter/) 
+<a name="isafter"></a>
+## isAfter
 <div class="docs-method-prose">
-
+Check if a DateTime is after another DateTime.
+</div>
 <div class="docs-method-signature">
 
     new DateTime().isAfter(DateTime);
-
 </div>
 
-Check if a DateTime is after another DateTime.
 <code>
 
     new DateTime('2010-10-20').isAfter(new DateTime('2010-10-19')); 
 </code>
 </div>
-
 </article>
 
-<article class="docs-method">
+<a name="issameorbefore"></a>
+<article>
 
-## [isSameOrBefore](#/query/isSameOrBefore/) 
+## isSameOrBefore
 <div class="docs-method-prose">
-
+</div>
 <div class="docs-method-signature">
 
     new DateTime().isSameOrBefore(DateTime);
 </div>
-
-</div>
-
 </article>
 
-<article class="docs-method">
+<a name="issameorafter"></a>
+<article>
 
-## [isSameOrAfter](#/query/isSameOrAfter/) 
+## isSameOrAfter
 <div class="docs-method-prose">
-
+Check if a DateTime is same or after another DateTime.
 <div class="docs-method-signature">
 
     new DateTime().isSameOrAfter(DateTime);
 
 </div>
-
-Check if a DateTime is after or the same as another DateTime.
+<code>
 
     new DateTime('2010-10-20').isSameOrAfter(new DateTime('2010-10-19'));
+</code>    
 </div>
 
 </article>
 
-<article class="docs-method">
+<a name="issbetween"></a>
+<article>
 
-## [isBetween](#/query/isBetween/) 
+## isBetween
 <div class="docs-method-prose">
-
+Check if a DateTime is between two other DateTimes, optionally looking at unit scale (minutes, hours, days, etc). The match is exclusive.
+</div>
 <div class="docs-method-signature">
 
     new DateTime().isBetween(DateTime1, DateTime2);
-    new DateTime().isBetween(DateTime1, DateTime2, String);
+    new DateTime().isBetween(DateTime1, DateTime2, border);
 </div>
 
-Check if a DateTime is between two other DateTimes, optionally looking at unit scale (minutes, hours, days, etc). The match is exclusive.
 
     new DateTime('2010-10-20').isBetween(new DateTime('2010-10-19'), new DateTime('2010-10-25')); 
 
- A `[` indicates inclusion of a value. A `(` indicates exclusion. If the inclusivity parameter is used, both indicators must be passed.
+border is 2 characters should be `[` or `]`
+If the first character is`[`, that indicates inclusion of the value, otherwise exclusion.
+If the second character is`]`, that indicates inclusion of the value, otherwise exclusion.
 
-    new DateTime('2016-10-30').isBetween(new DateTime('2016-10-30'), new DateTime('2016-12-30'=, '()'); 
-    new DateTime('2016-10-30').isBetween(new DateTime('2016-10-30'), new DateTime('2016-12-30'=, '[)'); 
-    new DateTime('2016-10-30').isBetween(new DateTime('2016-01-01'), new DateTime('2016-10-30'=, '()'); 
-    new DateTime('2016-10-30').isBetween(new DateTime('2016-01-01'), new DateTime('2016-10-30'=, '(]'); 
-    new DateTime('2016-10-30').isBetween(new DateTime('2016-10-30'), new DateTime('2016-10-30'=, '[]'); 
+<code>
 
+    new DateTime('2016-10-30').isBetween(new DateTime('2016-10-30'), new DateTime('2016-12-30', '[]'); ==> `true`
+
+    new DateTime('2016-10-30').isBetween(new DateTime('2016-10-30'), new DateTime('2016-12-30', '[['); ==> false
+
+    new DateTime('2016-10-30').isBetween(new DateTime('2016-01-01'), new DateTime('2016-10-30', ']]'); ==> true 
+
+    new DateTime('2016-10-30').isBetween(new DateTime('2016-01-01'), new DateTime('2016-10-30', '[['); ==> false
+</code>
 If the inclusivity parameter is not specified, DateTime will default to `[]`.
-
 </div>
-
 </article>
 
+<a name="isleapyear"></a>
+<article>
 
-
-
-<article class="docs-method">
-
-## [isLeapYear](#/query/isLeapYear/) 
+## isLeapYear
 <div class="docs-method-prose">
 
-`DateTime#isLeapYear` returns `true` if that year is a leap year, and `false` if it is not.
+ returns `true` if that year is a leap year, else `false`.
 <code>
 
     DateTime.isLeapYear(year)
@@ -273,11 +328,22 @@ If the inclusivity parameter is not specified, DateTime will default to `[]`.
 
 </article>
 
+## daysInMonth
+<div class="docs-method-prose">
+
+ returns the number of days in the month & year
+<code>
+
+    DateTime.daysInMonth(month, year)
+</code>
+</div>
+
+</article>
 
 
-<article class="docs-method">
+<article>
 
-## [seconds](#/get-set/second/)
+## seconds
 ### Set
 <div class="docs-method-signature">
 
@@ -301,10 +367,11 @@ If the inclusivity parameter is not specified, DateTime will default to `[]`.
 
 
 
-<article class="docs-method">
+<article>
 
-## [milliseconds](#/get-set/milliseconds/) 
-### [Set]()
+## milliseconds
+### Set
+
 <div class="docs-method-signature">
 
     DateTime.prototype.milliseconds(integer)
@@ -336,9 +403,9 @@ Accepts numbers from 0 to 999\. If the range is exceeded, it will bubble up to t
 
 
 
-<article class="docs-method">
+<article>
 
-## [minutes](#/get-set/minutes/)
+## minutes
 ### [Set]()
 <div class="docs-method-signature">
 
@@ -371,9 +438,9 @@ Accepts numbers from 0 to 59\. If the range is exceeded, it will bubble up to th
 
 
 
-<article class="docs-method">
+<article>
 
-## [hours](#/get-set/hours/) 
+## hours
 ### [Set]()
 <div class="docs-method-signature">
 
@@ -407,7 +474,7 @@ Accepts numbers from 0 to 23\. If the range is exceeded, it will bubble up to th
 
 
 
-## [dayOfWeek](#/get-set/dayOfWeek/) 
+## dayOfWeek
 ### [Set]()
 <div class="docs-method-signature">
 
@@ -446,9 +513,9 @@ If the range is exceeded, it will bubble up to other weeks.
 
 
 
-<article class="docs-method">
+<article>
 
-## [weekday (Locale Aware)](#/get-set/weekday/)
+## weekday (Locale Aware)
 <div class="docs-method-prose">
 
 <div class="docs-method-signature">
@@ -474,9 +541,9 @@ As with `DateTime#day`, if the range is exceeded, it will bubble up to other wee
 
 </article>
 
-<article class="docs-method">
+<article>
 
-## [isoWeekday](#/get-set/isoWeekday/)
+## isoWeekday
 <div class="docs-method-prose">
 
 <div class="docs-method-signature">
@@ -502,9 +569,9 @@ A day name is also supported. This is parsed in the DateTime's current locale.
 
 </article>
 
-<article class="docs-method">
+<article>
 
-## [dayOfYear](#/get-set/dayOfYear/)
+## dayOfYear
 <div class="docs-method-prose">
 
 <div class="docs-method-signature">
@@ -522,9 +589,9 @@ Accepts numbers from 1 to 366\. If the range is exceeded, it will bubble up to t
 
 </article>
 
-<article class="docs-method">
+<article>
 
-## [week](#/get-set/week/)
+## week
 <div class="docs-method-prose">
 
 <div class="docs-method-signature">
@@ -552,9 +619,9 @@ When setting the week of the year, the day of the week is retained.
 
 </article>
 
-<article class="docs-method">
+<article>
 
-## [isoWeek](#/get-set/isoWeek/) 
+## isoWeek
 <div class="docs-method-prose">
 
 <div class="docs-method-signature">
@@ -574,9 +641,9 @@ When setting the week of the year, the day of the week is retained.
 
 </article>
 
-<article class="docs-method">
+<article>
 
-## [month](#/get-set/month/)
+## month
 <div class="docs-method-prose">
 
 <div class="docs-method-signature">
@@ -607,9 +674,9 @@ Accepts numbers from 0 to 11\. If the range is exceeded, it will bubble up to th
 
 
 
-<article class="docs-method">
+<article>
 
-## [year](#/get-set/year/) 
+## year
 <div class="docs-method-prose">
 
 <div class="docs-method-signature">
@@ -627,9 +694,9 @@ Accepts numbers from -270,000 to 270,000.
 
 </article>
 
-<article class="docs-method">
+<article>
 
-### [weekYear](#/get-set/weekYear/)
+### weekYear
 <div class="docs-method-prose">
 
 <div class="docs-method-signature">
@@ -649,9 +716,9 @@ For example, in the US, the week that contains Jan 1 is always the first week. I
 
 </article>
 
-<article class="docs-method">
+<article>
 
-## [isoWeekYear](#/get-set/isoWeekYear/) 
+## isoWeekYear
 <div class="docs-method-prose">
 
 <div class="docs-method-signature">
@@ -667,9 +734,9 @@ Gets or sets the [ISO week-year](https://en.wikipedia.org/wiki/ISO_week_date).
 
 </article>
 
-<article class="docs-method">
+<article>
 
-## [weeksInYear](#/get-set/weeksInYear/) 
+## weeksInYear
 <div class="docs-method-prose">
 
 Gets the number of weeks according to locale in the current DateTime's year.
@@ -678,9 +745,9 @@ Gets the number of weeks according to locale in the current DateTime's year.
 
 </article>
 
-<article class="docs-method">
+<article>
 
-## [isoWeeksInYear](#/get-set/isoWeeksInYear/) 
+## isoWeeksInYear
 <div class="docs-method-prose">
 
 <div class="docs-method-signature">
@@ -695,9 +762,42 @@ Gets the number of weeks in the current DateTime's year, according to [ISO weeks
 
 </article>
 
-<article class="docs-method">
+<article>
 
-## [addYears](#/manipulating/addYears/) 
+
+<article>
+
+## lastDayOfMonth
+<div class="docs-method-prose">
+Move DateTime instance to the last day of the month.
+Time will be "23:59:59".
+</div>
+<div class="docs-method-signature">
+
+    new DateTime().lastDayOfMonth();
+
+</div>
+</article>
+
+<article>
+
+## firstDayOfMonth
+<div class="docs-method-prose">
+Move DateTime instance to the first day of the month.
+Time will be "00:00:00".
+</div>
+<div class="docs-method-signature">
+
+    new DateTime().firstDayOfMonth();
+
+</div>
+</article>
+
+
+<article>
+
+
+## addYears
 
 <div class="docs-method-signature">
 
@@ -711,9 +811,9 @@ Gets the number of weeks in the current DateTime's year, according to [ISO weeks
 This method returns a new DateTime.
 </article>
 
-<article class="docs-method">
+<article>
 
-## [addMonths](#/manipulating/addMonths/) 
+## addMonths
 
 <div class="docs-method-signature">
 
@@ -729,9 +829,9 @@ This method returns a new DateTime.
 
 
 
-<article class="docs-method">
+<article>
 
-## [addDays](#/manipulating/addDays/) 
+## addDays
 
 <div class="docs-method-signature">
 
@@ -746,9 +846,9 @@ This method returns a new DateTime.
 </article>
 
 
-<article class="docs-method">
+<article>
 
-## [addHours](#/manipulating/addHours/) 
+## addHours
 
 <div class="docs-method-signature">
 
@@ -762,9 +862,9 @@ This method returns a new DateTime.
 This method returns a new DateTime.
 </article>
 
-<article class="docs-method">
+<article>
 
-## [addMinutes](#/manipulating/addMinutes/) 
+## addMinutes
 
 <div class="docs-method-signature">
 
@@ -778,9 +878,9 @@ This method returns a new DateTime.
 This method returns a new DateTime.
 </article>
 
-<article class="docs-method">
+<article>
 
-## [addSeconds](#/manipulating/addSeconds/) 
+## addSeconds
 
 <div class="docs-method-signature">
 
@@ -795,9 +895,9 @@ This method returns a new DateTime.
 </article>
 
 
-<article class="docs-method">
+<article>
 
-## [add](#/manipulating/add/) 
+## add
 
 <div class="docs-method-signature">
 
@@ -819,7 +919,7 @@ If the day of the month on the original date is greater than the number of days 
 
 There are also special considerations to keep in mind when adding time that crosses over daylight saving time. If you are adding years, months, weeks, or days, the original hour will always match the added hour.
 
-Alternatively, you can use [durations](#/durations/) to add to DateTimes.
+Alternatively, you can use [durations](#/durations) to add to DateTimes.
 
     var duration = DateTime.duration({'days' : 1});
     new DateTime([2012, 0, 31]).add(duration); 
@@ -835,9 +935,9 @@ Alternatively, you can use [durations](#/durations/) to add to DateTimes.
 </article>
 
 
-<article class="docs-method">
+<article>
 
-## [diff](#/displaying/diff/)
+## diff
 <div class="docs-method-prose">
 
 <div class="docs-method-signature">

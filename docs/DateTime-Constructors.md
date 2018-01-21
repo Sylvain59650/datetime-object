@@ -6,8 +6,8 @@
  <div class="docs-content">
 
 # Contents
-- [Installation](Installation.md#/use-it/)
-- [Constructors](#/constructors/)
+- [Installation](README.md)
+- [Constructors](#constructors)
 - [Parsing](DateTime-Parsing.md)
 - [Converters](DateTime-Converters.md)
 - [Displays](DateTime-Displays.md)
@@ -20,7 +20,7 @@
 
 <article class="docs-section">
 
-# [Constructors](#/constructors/)
+# Constructors
 
 <article class="docs-method">
 
@@ -29,7 +29,9 @@
 <div class="docs-method-signature">
 
     new DateTime(stringDate, format);
+
     new DateTime(stringDate, format,lang);
+
     new DateTime(year, month, day, hours, minutes, seconds, milliseconds);   
 </div>
 
