@@ -1,6 +1,5 @@
 //var { DateTime, TimeSpan } = 
-var moment = require("moment");
-var DateTimeModule = require("../distrib/datetime-object.min.js");
+var DateTime = require("../distrib/datetime-object.min.js");
 
 //import { DateTime, TimeSpan } from "../sources/datetime-object-nodejs.js";
 //var { TimeSpan } = require("./sources/TimeSpan.js");
@@ -144,7 +143,7 @@ console.log(2404, DateTime.daysInMonth(2, 2404));
 //console.log(DateTime.tryParse("2017-10-30T18:30:25").toString("DD/MM/YYYY"));
 
 var dt;
-console.log(DateTime.tryParse("2017-10-30T18:30:25", dt));
+console.log(DateTime.parse("2017-10-30T18:30:25", dt));
 console.log(dt);
 
 var dt26 = DateTime.today();
@@ -162,19 +161,6 @@ console.log(dt26.toString("DD/MM/YYYY HH:mm"), dt30.toString("DD/MM/YYYY HH:mm")
 
 console.log(dt30.toString());
 
-
-DateTime.tryParse("32/12/2018");
-DateTime.tryParse("31/04/2018");
-DateTime.tryParse("31/13/2018");
-DateTime.tryParse("12/12/2018");
-DateTime.tryParse("1/1/2018");
-DateTime.tryParse("01/12/20i18");
-DateTime.tryParse("01/4l/2018");
-DateTime.tryParse("01/04/2018 05:aa:00");
-DateTime.tryParse("01/04/2018 aa:55:55");
-DateTime.tryParse("01/04/2018 04:05:aa");
-DateTime.tryParse("01/04/2018 04:05:555");
-DateTime.tryParse("01/04/2018 07:055:05");
 
 var dt31 = DateTime.fromObject({ y: 2010, M: 3, d: 5, h: 15, m: 10, s: 3, ms: 123 });
 console.log(dt31.toString());
@@ -210,7 +196,7 @@ console.log("s", di.toDuration().asSeconds());
 console.log(di.humanize());
 console.log(di.toString("HH:mm:ss"));
 
-console.log(moment.locale("fr"));
+//console.log(moment.locale("fr"));
 
 DateTime.SetupLocale("fr", {
   months: [
@@ -230,12 +216,12 @@ console.log(new DateTime().toString("LLLL"));
 DateTime.SetupLocale("ru");
 console.log(new DateTime().toString("LLLL"));
 
+DateTime.SetupLocale("fr");
 
-
-moment.locale('de');
+//moment.locale('de');
 // Use moment now that the locale has been properly set.
-console.log(moment().format('LLLL')); // 'Freitag, 24. Juni 2016 01:42'
-console.log(moment().format('LLLL', "fr"));
+// console.log(moment().format('LLLL')); // 'Freitag, 24. Juni 2016 01:42'
+// console.log(moment().format('LLLL', "fr"));
 console.log(new DateTime().locale());
 
 
@@ -254,13 +240,40 @@ console.log(dt40.toString(), dt41.toString());
 dt41 = dt40.firstDayOfMonth();
 console.log(dt40.toString(), dt41.toString());
 
-if (DateTime.tryParse("30/02/2018", "DD/MM/YYYY")) {
+if (DateTime.parse("30/02/2018", "DD/MM/YYYY") != null) {
 
 } else {
   console.log("fail");
 }
 
-var dt = DateTime.tryParse("28/02/2018", "DD/MM/YYYY");
+var dt = DateTime.parse("28/02/2018", "DD/MM/YYYY");
 if (dt) {
   console.log(dt.toString("DD/MM/YYYY"));
 }
+
+var dt50 = DateTime.now();
+var dt51 = dt50.addDays(1).addHours(5).addMinutes(10).addSeconds(2);
+
+var diff = dt51.diff(dt50);
+console.log(diff.toString("D HH:mm:ss"), diff.totalHours());
+
+
+var dt52 = dt51.addMonths(4).addYears(2);
+diff = dt52.diff(dt51);
+console.log(diff.toString("y MM D HH:mm:ss"), diff.totalHours());
+
+console.log(diff.humanize(true));
+
+
+var dt53 = DateTime.parse("2013-02-04T18:35:24+02:00", null, false, true);
+console.log(dt53.toString());
+
+var zone = DateTime.parseZone("2013 01 01 -13:00", 'YYYY MM DD ZZ', true);
+console.log(zone.utcOffset());
+
+debugger;
+var dt54 = DateTime.parse("2013 01 01 +02:00", 'YYYY MM DD ZZ', false, false);
+console.log(dt54.toString(), dt54.utcOffset());
+
+var dt55 = DateTime.parse("2013 01 01 +02:00", 'YYYY MM DD ZZ', false, true);
+console.log(dt55.toString(), dt55.utcOffset());

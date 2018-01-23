@@ -18,11 +18,10 @@
 
 <article class="docs-section"> 
 
-# [Section Parsing](#/parsing/)
-- [parse](#/parse/)
-- [tryParse](#tryparse)
+# [Section Parsing]()
+- [parse](#parse)
 - [parseZone](#parsezone)
-- [isValid](#isvalid) 
+- [Supported ISO 8601 strings](#supportediso)
 - [The RFC 2822 date time format](#rfc2822)
 
 <article class="docs-method">
@@ -35,6 +34,8 @@
     DateTime.parse(string);
     DateTime.parse(string,format);
     DateTime.parse(string,[formats]);
+    DateTime.parse(string,[formats],parseExact);
+    DateTime.parse(string,[formats],parseExact,utcMode);
 </code>
 </div>
 </article>
@@ -49,7 +50,7 @@ When creating a DateTime from a string, we first check if the string matches kno
 
 **Warning:** Browser support for parsing strings [is inconsistent](http://dygraphs.com/date-formats.html). Because there is no specification on which formats should be supported, what works in some browsers will not work in other browsers.
 
-For consistent results parsing anything other than ISO 8601 strings, you should use [String + Format](#/parsing/string-format/).
+<a name="supportediso"></a>
 
 ## Supported ISO 8601 strings
 
@@ -130,33 +131,6 @@ The parser also confirms that the day-of-week (when included) is consistent with
 
 <article>
 
-# tryParse
-
-<div class="docs-method-prose">
-If the parsing succeeded, return the new DateTime
-
-  if the parsing fails, the method returns false and logs the cause of the rejection
-</div>
-
-<div class="docs-method-signature">
-
-    DateTime.tryParse = function(st, formats)
-</div>
-
-<code>
-  
-    if (DateTime.tryParse("30/02/2018","DD/MM/YYYY")) {
-        unreachable code because invalid date
-    }
-</code>
-<code>
-    
-    var dt=DateTime.tryParse("28/02/2018","DD/MM/YYYY");
-     if (dt) {
-         console.log(dt.toString("DD/MM/YYYY"));
-     }
-</code>
-</article>
 
 <article class="docs-method">
 
@@ -198,10 +172,15 @@ It also allows you to pass locale and strictness arguments.
 </article>
 
 
-<article class="docs-method">
 
-## isValid 
+<article class="docs-method">
+<a name="invalidparsing"></a>
+
+## Invalid Parsing
 <div class="docs-method-prose">
+
+If the parsing fails, the function returns `null` and logs a message on the console to explain the reason for the failure
+
 You can check whether the DateTime considers the date invalid using `DateTime#isValid`. You can check the metrics used by `#isValid` using `DateTime#parsingFlags`, which returns an object.
 
 The following parsing flags result in an invalid date:
