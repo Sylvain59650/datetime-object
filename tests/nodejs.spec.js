@@ -292,3 +292,5 @@ var dt57 = DateTime.now().addDays(2);
 console.log(dt57.humanize(true));
 
 console.log(dt57.locale());
+
+console.log(dt57.ceil(10, "minutes").toString());

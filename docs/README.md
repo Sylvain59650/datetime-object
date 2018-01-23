@@ -6,7 +6,7 @@
  <div class="docs-content">
 
 # Main Contents
-- [Installation](Installation.md#/use-it/)
+- [Installation](#install)
 - [Constructors](DateTime-Constructors.md)
 - [Parsing](DateTime-Parsing.md)
 - [Converters](DateTime-Converters.md)
@@ -23,18 +23,19 @@
 
 dateTime-object was designed to work both with all browsers and with Node.js.
 It's a refactoring of [momentjs](https://momentjs.com/) for clean API and working with Objects.
+It requires moment and moment-round.
 
-# [Installation](#/use-it/) 
+# [Installation](#install) 
 
 
 ## download
 <code>
 
-    npm install datetime-object --save
+    npm install moment moment-round datetime-object --save
 
 OR
 
-    bower install datetime-object --save
+    bower install moment moment-round datetime-object --save
 </code>
 
 
@@ -44,11 +45,13 @@ OR
 
 <code>
 
+    <script src="../node_modules/moment/min/moment.min.js"></script>
+    <script src="../node_modules/moment-round/dist/moment-round.min.js"></script>
     <script src="datetime-object.min.js"></script>;
 </code>
 
 ### in Node.js
-    
+
     require('datetime-object');    
 </code>
 
