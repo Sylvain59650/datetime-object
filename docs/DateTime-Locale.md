@@ -50,13 +50,10 @@ In addition to assigning a global locale, you can assign a locale to a specific 
     DateTime.locale(String[]);
     DateTime.locale(String, Object);
 
-    DateTime.lang(String);
-    DateTime.lang(String[]);
-    DateTime.lang(String, Object);
 
 </div>
 
-By default, DateTime.js comes with English (United States) locale strings. If you need other locales, you can load them into DateTime.js for later use.
+By default, datetime-object comes with English (United States) locale strings. If you need other locales, you can load them into DateTime.js for later use.
 
 To load a locale, pass the key and the string values to `DateTime.locale`.
 
@@ -122,20 +119,19 @@ More details on each of the parts of the locale bundle can be found in the [cust
 Once you load a locale, it becomes the active locale. To change active locales, simply call `DateTime.locale` with the key of a loaded locale.
 
     DateTime.locale('fr');
-    new DateTime(1316116057189).fromNow(); 
+    new DateTime(1316116057189).humanize(); 
     DateTime.locale('en');
-    new DateTime(1316116057189).fromNow(); 
+    new DateTime(1316116057189).humanize(); 
 
 changing the global locale doesn't affect existing instances.
 
     DateTime.locale('fr');
     var m = new DateTime(1316116057189);
-    m.fromNow(); 
+    m.humanize(); 
 
     DateTime.locale('en');
-    m.fromNow(); 
-    new DateTime(1316116057189).fromNow(); 
-
+    m.humanize(); 
+    
 `DateTime.locale` returns the locale used. This is useful because DateTime won't change locales if it doesn't know the one you specify.
 
     DateTime.locale('fr'); 

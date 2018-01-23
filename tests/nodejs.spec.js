@@ -19,7 +19,7 @@ var mnt = dt2.toMoment();
 var dt3 = DateTime.parse("15/01/2018 00:00:00", "DD/MM/YYYY HH:mm:ss");
 console.log(dt3.toString("DD/MM/YYYY"));
 
-var ts = dt3.diff(dt2);
+var ts = dt3.diffAsTimeSpan(dt2);
 console.log(ts.toString("HH:mm:ss"));
 console.log(ts.totalSeconds());
 
@@ -142,9 +142,8 @@ console.log(2404, DateTime.daysInMonth(2, 2404));
 
 //console.log(DateTime.tryParse("2017-10-30T18:30:25").toString("DD/MM/YYYY"));
 
-var dt;
-console.log(DateTime.parse("2017-10-30T18:30:25", dt));
-console.log(dt);
+console.log(DateTime.parse("2017-10-30T18:30:25").toString());
+
 
 var dt26 = DateTime.today();
 var dt27 = dt26.addMinutes(5);
@@ -173,7 +172,7 @@ var dt33 = dt32.addDays(1);
 
 console.log(dt32.toString(), dt33.toString());
 
-var di = dt33.diff(dt32);
+var di = dt33.diffAsTimeSpan(dt32);
 console.log(di.totalMilliSeconds());
 console.log(di.totalSeconds());
 console.log(di.totalMinutes());
@@ -184,7 +183,7 @@ console.log(di.toString("HH:mm:ss"));
 
 //var dt34 = dt32.addHours(12);
 var dt34 = dt32.addDays(0.5);
-di = dt34.diff(dt32);
+di = dt34.diffAsTimeSpan(dt32);
 
 console.log(dt32.toString(), dt34.toString());
 console.log(di.totalMilliSeconds());
@@ -210,7 +209,7 @@ DateTime.SetupLocale("en");
 
 //console.log(moment.locale("fr"));
 
-console.log(dt26.toString("MMM"), dt26.toString("MMMM"));
+console.log("dt26", dt26.toString("MMM"), dt26.toString("MMMM"));
 console.log(new DateTime().toString("LLLL"));
 
 DateTime.SetupLocale("ru");
@@ -235,7 +234,7 @@ console.log(now2.toString());
 
 var dt40 = DateTime.now();
 var dt41 = dt40.lastDayOfMonth();
-console.log(dt40.toString(), dt41.toString());
+console.log("dt40", dt40.toString(), dt41.toString());
 
 dt41 = dt40.firstDayOfMonth();
 console.log(dt40.toString(), dt41.toString());
@@ -254,26 +253,42 @@ if (dt) {
 var dt50 = DateTime.now();
 var dt51 = dt50.addDays(1).addHours(5).addMinutes(10).addSeconds(2);
 
-var diff = dt51.diff(dt50);
+var diff = dt51.diffAsTimeSpan(dt50);
 console.log(diff.toString("D HH:mm:ss"), diff.totalHours());
 
 
 var dt52 = dt51.addMonths(4).addYears(2);
-diff = dt52.diff(dt51);
-console.log(diff.toString("y MM D HH:mm:ss"), diff.totalHours());
+diff = dt52.diffAsTimeSpan(dt51);
+console.log(dt52.toString(), dt51.toString(), diff.toString("y MM D HH:mm:ss"), diff.totalHours());
 
 console.log(diff.humanize(true));
-
-
+debugger;
 var dt53 = DateTime.parse("2013-02-04T18:35:24+02:00", null, false, true);
-console.log(dt53.toString());
+console.log("dt53", dt53.toString());
 
 var zone = DateTime.parseZone("2013 01 01 -13:00", 'YYYY MM DD ZZ', true);
 console.log(zone.utcOffset());
 
-debugger;
 var dt54 = DateTime.parse("2013 01 01 +02:00", 'YYYY MM DD ZZ', false, false);
 console.log(dt54.toString(), dt54.utcOffset());
 
-var dt55 = DateTime.parse("2013 01 01 +02:00", 'YYYY MM DD ZZ', false, true);
+var dt55 = DateTime.parse("2013 01 01", 'YYYY MM DD', false, true);
 console.log(dt55.toString(), dt55.utcOffset());
+
+DateTime.locale('fr');
+//var m = DateTime.fromUnixEpoch(1316116057189);
+
+var m = new DateTime(2014, 2, 5, 0, 0, 0, 0);
+console.log(m.toString("ddd MMM YYYY"));
+
+DateTime.locale('en');
+console.log(m.toString("ddd MMM YYYY"));
+
+var dt56 = new DateTime(2018, 1);
+console.log(dt56.toString("ddd DD/MM/YYYY HH:mm:ss"));
+
+DateTime.locale('fr');
+var dt57 = DateTime.now().addDays(2);
+console.log(dt57.humanize(true));
+
+console.log(dt57.locale());

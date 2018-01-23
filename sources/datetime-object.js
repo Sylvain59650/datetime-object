@@ -13,14 +13,11 @@
   function DateTime(year, month, day, hours, minutes, seconds, milliseconds) {
     if (arguments.length === 0) {
       this.mmt = moment();
-    } else if (arguments.length === 1) {
-      this.mmt = year; //a moment
-    }
-    //var dt = new Date(year, month, day, hours, minutes, seconds, milliseconds);
-    else {
+    } else {
       this.mmt = moment({ y: year, M: month - 1, d: day, h: hours, m: minutes, s: seconds, ms: milliseconds });
     }
   }
+
 
   DateTime.defaultOutput = null;
   DateTime.defaultLocale = null;
@@ -91,6 +88,10 @@
     return DateTime.fromMoment(mmt);
   }
 
+  DateTime.prototype.humanize = function(relative) {
+    var duration = moment.duration(this.mmt.diff(moment()));
+    return duration.humanize(relative);
+  }
 
   DateTime.prototype.day = function(nb) {
     if (arguments.length == 1) {
@@ -244,7 +245,7 @@
       mmt = moment.utc(st, formats, parseExact);
     }
     if (mmt.isValid()) {
-      return new DateTime(mmt);
+      return DateTime.fromMoment(mmt);
     }
     var cause = mmt.invalidAt();
     var causeTxt = "";
@@ -310,7 +311,7 @@
     return (dt1.mmt.isAfter(dt2.mmt) ? 1 : -1);
   }
 
-  DateTime.prototype.isBetween = function(dt1, dt2, strict, granularity) {
+  DateTime.prototype.isBetween = function(dt1, dt2, strict) {
     // return this.mmt.isBetween(dt1, dt2, granularity || null, stric || '[]');
     strict = strict || "[]";
     if (this.mmt.isBefore(dt1.mmt)) {
@@ -350,16 +351,14 @@
     return ((year % 4 === 0 && year % 100 != 0) || year % 400 === 0);
   }
 
-  DateTime.prototype.isValid = function() {
-    return this.mmt.isValid();
-  }
-  DateTime.prototype.invalidAt = function() {
-    return this.mmt.invalidAt();
+  DateTime.prototype.diffAsTimeSpan = function(dt) {
+    var duration = moment.duration(this.mmt.diff(dt.mmt));
+    return TimeSpan.fromDuration(duration);
   }
 
+
   DateTime.prototype.diff = function(dt) {
-    var duration = moment.duration(this.mmt.diff(dt.mmt));
-    return new TimeSpan(duration);
+    return this.mmt.diff(dt.mmt);
   }
 
   DateTime.fn = function(name, fn) {
@@ -438,20 +437,23 @@
 
 
   function TimeSpan(year, month, day, hours, minutes, seconds) {
-    if (arguments.length == 1) {
-      this.duration = year; // duration
-    } else {
-      this.duration = moment.duration({
-        seconds: seconds,
-        minutes: minutes,
-        hours: hours,
-        days: day,
-        weeks: 0,
-        months: month,
-        years: year
-      });
-    }
+    this.duration = moment.duration({
+      seconds: seconds || 0,
+      minutes: minutes || 0,
+      hours: hours || 0,
+      days: day || 0,
+      weeks: 0,
+      months: month || 0,
+      years: year || 0
+    });
   }
+
+  TimeSpan.fromDuration = function(duration) {
+    var ts = new TimeSpan();
+    ts.duration = duration;
+    return ts;
+  }
+
 
   TimeSpan.prototype.toDuration = function() {
     return this.duration;

@@ -20,13 +20,14 @@
 <article class="docs-section"> 
 
 # This Section
--  [toString](#tostring)
-    - [String Format](#stringformat)
-    - [Localized formats](#localizedformats)
-    - [Escaping characters](#escapingcharacters)
-    - [Formatting Speed](#formattingspeed)
-    - [Other tokens](#othertokens)
-    - [Default format](#defaultformat)    
+- [toString](#tostring)
+- [humanize](#humanize)
+- [String Format](#stringformat)
+- [Localized formats](#localizedformats)
+- [Escaping characters](#escapingcharacters)
+- [Formatting Speed](#formattingspeed)
+- [Other tokens](#othertokens)
+- [Default format](#defaultformat)    
 
 <article class="docs-method">
 
@@ -328,6 +329,22 @@ This is the most robust display option. It takes a string of tokens and replaces
 </tr>
 </tbody>
 </table>
+
+<article>
+
+## humanize
+<div class="docs-method-prose">
+Returns a string representing the duration between the date and now for a human.
+
+By default, the return string is suffixless. If you want a suffix, pass in true as seen below.
+
+</div>
+<div class="docs-method-signature">
+
+    DateTime.today().humanize();
+
+</div>
+</article>
 
 <a name="localizedformats"></a>
 ### Localized formats

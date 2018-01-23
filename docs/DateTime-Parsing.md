@@ -23,6 +23,7 @@
 - [parseZone](#parsezone)
 - [Supported ISO 8601 strings](#supportediso)
 - [The RFC 2822 date time format](#rfc2822)
+- [Invalid Parsing](#invalidparsing)
 
 <article class="docs-method">
 
@@ -95,7 +96,7 @@ If a time part is included, an offset from UTC can also be included as `+-HH:mm`
     2013-02-08 09:30:26.123+07     # +-HH
 
 
-If a string does not match any of the above formats and is not able to be parsed with `Date.parse`, `DateTime#isValid` will return false.
+If a string does not match any of the above formats and is not able to be parsed with `Date.parse`, the function returns `null`.
 
 <a name="rfc2822"></a>
 ## The RFC 2822 date time format
@@ -180,47 +181,6 @@ It also allows you to pass locale and strictness arguments.
 <div class="docs-method-prose">
 
 If the parsing fails, the function returns `null` and logs a message on the console to explain the reason for the failure
-
-You can check whether the DateTime considers the date invalid using `DateTime#isValid`. You can check the metrics used by `#isValid` using `DateTime#parsingFlags`, which returns an object.
-
-The following parsing flags result in an invalid date:
-
-*   `overflow`: An overflow of a date field, such as a 13th month, a 32nd day of the month (or a 29th of February on non-leap years), a 367th day of the year, etc. `overflow` contains the index of the invalid unit to match `#invalidAt` (see below); `-1` means no overflow.
-*   `invalidMonth`: An invalid month name, such as `new DateTime('Marbruary', 'MMMM');`. Contains the invalid month string itself, or else null.
-*   `empty`: An input string that contains nothing parsable, such as `new DateTime('this is nonsense');`. Boolean.
-*   `nullInput`: A `null` input, like `new DateTime(null);`. Boolean.
-*   `invalidFormat`: An empty list of formats, such as `new DateTime('2013-05-25', [])`. Boolean.
-*   `userInvalidated`: A date created explicitly as invalid, such as `DateTime.invalid()`. Boolean.
-
-    In addition to the above, the meridiem and parsedDateParts flags work together to determine date validity.
-
-*   `meridiem`: Indicates what meridiem (AM/PM) was parsed, if any. String.
-*   `parsedDateParts`: Returns an array of date parts parsed in descending order - i.e. parsedDateParts[0] === year. If no parts are present, but meridiem has value, date is invalid. Array.
-
-Additionally, if the DateTime is parsed in strict mode, these flags must be empty for the DateTime to be valid:
-
-*   `unusedTokens`: array of format substrings not found in the input string
-*   `unusedInput`: array of input substrings not matched to the format string
-
-Additionally, you can use `DateTime#invalidAt` to determine which date unit overflowed.
-
-    var m = new DateTime("2011-10-10T10:20:90");
-    m.isValid(); 
-    m.invalidAt(); 
-
-The return value has the following meaning:
-
-1.  years
-2.  months
-3.  days
-4.  hours
-5.  minutes
-6.  seconds
-7.  milliseconds
-
-**Note:** In case of multiple wrong units the first one is returned (because days validity may depend on month, for example).
-
-If a DateTime is invalid, it behaves like a NaN in floating point operations.
 
 </article>
 </article>

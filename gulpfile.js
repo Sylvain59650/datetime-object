@@ -49,8 +49,8 @@ gulp.task("datetime-object.min.js", () => {
       "sources/datetime-object.js"
     ])
     .pipe(concat("datetime-object.min.js"))
-    .pipe(uglify())
-    .on('error', function(err) { gutil.log(gutil.colors.red('[Error]'), err.toString()); })
+    // .pipe(uglify())
+    // .on('error', function(err) { gutil.log(gutil.colors.red('[Error]'), err.toString()); })
     // .pipe(umd())
     .pipe(gulp.dest(chemins.distrib))
 });
