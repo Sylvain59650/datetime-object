@@ -52,7 +52,7 @@ OR
 
 ### in Node.js
 
-    require('datetime-object');    
+    require("datetime-object");    
 </code>
 
 ## usage
