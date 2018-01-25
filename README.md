@@ -11,7 +11,7 @@ It requires moment and moment-round.
 
  <div class="Note" style="color:orange;font-style:italic">
  
-  The lastest version of this document is available on [Github > datetime-object](https://github.com/Sylvain59650/datetime-object/blob/master/README.md)
+  The lastest version of this document is available on [Github > datetime-object](https://github.com/Sylvain59650/datetime-object/tree/master/docs/README.md)
 </div>
 
 </article>
