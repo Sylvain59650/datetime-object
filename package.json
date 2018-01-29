@@ -1,6 +1,6 @@
 {
   "name": "datetime-object",
-  "version": "0.9.1",
+  "version": "0.9.2",
   "description": "to work easily with dates & times",
   "main": "tests/nodejs.spec.js",
   "directories": {

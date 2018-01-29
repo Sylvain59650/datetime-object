@@ -17,11 +17,27 @@
   - [Locale](#/locale/)
 
 
+# Locale Section
+- [i18n](#i18n)
+    - [Changing locale globally](#changinglocaleglobally)
+    - [Changing locale locally](#changinglocalelocally)
+    - [Loading locales in the browser](#localesinthebrowser)
+    - [Checking the current locale](#currentlocale)
+    - [Listing the months and weekdays of the current locale](#listing)
+    - [Pseudo Locale](#pseudolocale)
+- [Customize](#customize)
+    - [Month Names](#monthnames)
+    - [Month Abbreviations](#monthabbreviations)
+    - [Weekday Names](#weekdaynames)
+    - [Weekday Abbreviations](#weekdayabbreviations)
+    - [Minimal Weekday Abbreviations](#minimalweekdayabbreviations)
+    - [Long Date Formats](#longdateformats)
+    - [Relative Time](#relativetime)
+    - [AM/PM](#ampm)
+
 <article class="docs-section"> 
 
-# [Locale](#/locale/)
-
-## [i18n](#/i18n/)
+## i18n
 
 </article>
 
@@ -40,8 +56,9 @@ In addition to assigning a global locale, you can assign a locale to a specific 
 </article>
 
 <article class="docs-method">
+<a name="changinglocaleglobally"></a>
 
-### [Changing locale globally](#/i18n/changing-locale/) 
+### Changing locale globally
 <div class="docs-method-prose">
 
 <div class="docs-method-signature">
@@ -119,14 +136,14 @@ More details on each of the parts of the locale bundle can be found in the [cust
 Once you load a locale, it becomes the active locale. To change active locales, simply call `DateTime.locale` with the key of a loaded locale.
 
     DateTime.locale('fr');
-    new DateTime(1316116057189).humanize(); 
+    new DateTime().addDays(-1).humanize(); 
     DateTime.locale('en');
-    new DateTime(1316116057189).humanize(); 
+    new DateTime().addDays(-1).humanize(); 
 
 changing the global locale doesn't affect existing instances.
 
     DateTime.locale('fr');
-    var m = new DateTime(1316116057189);
+    var m = DateTime.today();
     m.humanize(); 
 
     DateTime.locale('en');
@@ -154,16 +171,14 @@ Finally, DateTime will search intelligently through an array of locales and thei
 </article>
 
 <article class="docs-method">
+<a name="changinglocalelocally"></a>
 
-### [Changing locales locally](#/i18n/instance-locale/) 
+### Changing locales locally
 <div class="docs-method-prose">
 
 <div class="docs-method-signature">
 
     new DateTime().locale(String|Boolean);
-
-    new DateTime().lang(String|Boolean);
-
 </div>
 
 A global locale configuration can be problematic when passing around DateTimes that may need to be formatted into different locale.
@@ -171,30 +186,19 @@ A global locale configuration can be problematic when passing around DateTimes t
  we added instance specific locale configurations.
 
     DateTime.locale('en'); 
-    var localLocale = new DateTime();
+    var dt = new DateTime();
 
-    localLocale.locale('fr'); 
-    localLocale.toString('LLLL'); 
+    dt.locale('fr'); 
+    dt.toString('LLLL'); 
     new DateTime().toString('LLLL'); 
 
     DateTime.locale('es'); 
-    localLocale.toString('LLLL'); 
+    dt.toString('LLLL'); 
     new DateTime().toString('LLLL'); 
 
-    localLocale.locale(false); 
-    localLocale.toString('LLLL'); 
+    dt.locale(false); 
+    dt.toString('LLLL'); 
     new DateTime().toString('LLLL'); 
-
-If you call `DateTime#locale` with no parameters, you get back the locale configuration that would be used for that DateTime.
-
-    var fr = new DateTime().locale('fr');
-    fr.localeData().months(new DateTime([2012, 0])) 
-    fr.locale('en');
-    fr.localeData().months(new DateTime([2012, 0])) 
-
-If you need to access the locale data for a DateTime, this is the preferred way to do so.
-
-you can also specify an array of locale identifiers. It works the same was it does in the [global locale configuration](#/i18n/changing-locale/).
 
 </div>
 
@@ -202,21 +206,19 @@ you can also specify an array of locale identifiers. It works the same was it do
 
 
 <article class="docs-method">
+<a name="localesinthebrowser"></a>
 
-### [Loading locales in the browser](#/i18n/loading-into-browser/) 
+### Loading locales in the browser
 <div class="docs-method-prose">
 
 <div class="docs-method-signature">
 
     DateTime.locale(String, Object);
-
-    DateTime.lang(String, Object);
-
 </div>
 
 Loading locales in the browser just requires you to include the locale files. Be sure to specify the charset to prevent encoding issues.
 
-    <script src="DateTime.js"></script>
+    <script src="./node_modules/datetime-object/distrib/datetime-object.min.js"></script>
     <script src="locale/fr.js" charset="UTF-8"></script>
     <script src="locale/pt.js" charset="UTF-8"></script>
     <script>
@@ -226,19 +228,8 @@ Loading locales in the browser just requires you to include the locale files. Be
 
 There are minified versions of all locales together:
 
-    <script src="DateTime.js"></script>
+    <script src="./node_modules/datetime-object/distrib/datetime-object.min.js"></script>
     <script src="min/locales.js" charset="UTF-8"></script>
-
-To minimize HTTP requests, use our Grunt task to compile [DateTime](https://github.com/DateTime/DateTime) with a custom list of locales:
-
-    grunt transpile:fr,it
-
-    <script src="min/DateTime-with-locales.custom.js" charset="UTF-8"></script>
-
-If you are using JSPM as plugin manager, you should add the locale in your lib.
-
-    import * as DateTime from 'DateTime';
-    import 'DateTime/locale/fr';
 
 **Note:** Locale files are defined in [UMD](https://github.com/umdjs/umd) style, so they should work seamlessly in all environments.
 
@@ -247,32 +238,15 @@ If you are using JSPM as plugin manager, you should add the locale in your lib.
 </article>
 
 <article class="docs-method">
+<a name="currentlocale"></a>
 
-### [Adding your locale to DateTime.js](#/i18n/adding-locale/)
+### Checking the current locale
 
-<div class="docs-method-prose">
-
-To add your locale to DateTime.js, submit a pull request with both a locale file and a test file. You can find examples in `DateTime/src/locale/fr.js` and `DateTime/src/test/locale/fr.js`.
-
-To run the tests in Node.js, do `npm install`, then `grunt`.
-
-If all the tests pass, submit a pull request, and thank you for contributing!
-
-</div>
-
-</article>
-
-<article class="docs-method">
-
-### [Checking the current DateTime.js locale](#/i18n/getting-locale/)
 <div class="docs-method-prose">
 
 <div class="docs-method-signature">
 
     DateTime.locale();
-
-    DateTime.lang();
-
 </div>
 
 If you are changing locales frequently, you may want to know what locale is currently being used. This is as simple as calling `DateTime.locale` without any parameters.
@@ -282,7 +256,7 @@ If you are changing locales frequently, you may want to know what locale is curr
     DateTime.locale('fr'); 
     DateTime.locale(); 
 
-As of version **2.12.0** it is possible to list all locales that have been loaded and are available to use:
+ it is possible to list all locales that have been loaded and are available to use:
 
     DateTime.locales()
 
@@ -291,8 +265,9 @@ As of version **2.12.0** it is possible to list all locales that have been loade
 </article>
 
 <article class="docs-method">
+<a name="listings"></a>
 
-### [Listing the months and weekdays of the current DateTime.js locale](#/i18n/listing-months-weekdays/)
+### Listing the months and weekdays of the current locale
 <div class="docs-method-prose">
 
 <div class="docs-method-signature">
@@ -330,7 +305,7 @@ You can pass an integer into each of those functions to get a specific month or 
 
     DateTime.weekdays(3); 
 
-As of **2.13.0** you can pass a bool as the first parameter of the weekday functions. If true, the weekdays will be returned in locale specific order. For instance, in the Arabic locale, Saturday is the first day of the week, thus:
+You can pass a bool as the first parameter of the weekday functions. If true, the weekdays will be returned in locale specific order. For instance, in the Arabic locale, Saturday is the first day of the week, thus:
 
     DateTime.locale('ar');
     DateTime.weekdays(true); 
@@ -355,8 +330,9 @@ And finally, you can combine both the format option and the integer option.
 
 
 <article class="docs-method">
+<a name="pseudolocale"></a>
 
-### [Pseudo Locale](#/i18n/pseudo-locale/) 
+### Pseudo Locale
 <div class="docs-method-prose">
 
 <div class="docs-method-signature">
@@ -369,16 +345,15 @@ DateTime optionally includes a pseudo locale. This locale will populate the date
 
     DateTime.locale('x-pseudo');
     new DateTime().toString('LLL'); 
-    new DateTime().fromNow(); 
-    new DateTime().calendar(); 
 
 </div>
 
 </article>
 
 <article class="docs-section">
+<a name="customize"></a>
 
-## [Customize](#/customization/)
+## Customize
 
 </article>
 
@@ -386,7 +361,7 @@ DateTime optionally includes a pseudo locale. This locale will populate the date
 
 <div class="docs-method-prose">
 
-DateTime.js is very easy to customize. In general, you should create a locale setting with your customizations.
+datetime-object.js is very easy to customize. In general, you should create a locale setting with your customizations.
 
     DateTime.locale('en-my-settings', {
 
@@ -424,9 +399,13 @@ To revert an update use:
 
 </article>
 
+<a name="monthnames"></a>
+
 <article class="docs-method">
 
-### [Month Names](#/customization/month-names/) 
+
+### Month Names
+
 <div class="docs-method-prose">
 
 <div class="docs-method-signature">
@@ -455,13 +434,6 @@ To revert an update use:
         months : String[]
     });
     DateTime.locale('en', {
-        months : Function
-    });
-
-    DateTime.lang('en', {
-        months : String[]
-    });
-    DateTime.lang('en', {
         months : Function
     });
 
@@ -489,7 +461,7 @@ If you need more processing to calculate the name of the month, (for example, if
         }
     });
 
-From version **2.11.0** months can also be an object, specifying `standalone` and `format` forms (nominative and accusative). The regular expression that is run on the format to check whether to use the `format` form is `/D[oD]?(\[[^\[\]]*\]|\s+)+MMMM?/`. From version **2.14.0** a different one can be specified with the `isFormat` key.
+Months can also be an object, specifying `standalone` and `format` forms (nominative and accusative). The regular expression that is run on the format to check whether to use the `format` form is `/D[oD]?(\[[^\[\]]*\]|\s+)+MMMM?/`. A different one can be specified with the `isFormat` key.
 
     DateTime.updateLocale('en', {
         months : {
@@ -504,8 +476,9 @@ From version **2.11.0** months can also be an object, specifying `standalone` an
 </article>
 
 <article class="docs-method">
+<a name="monthabbreviations"></a>
 
-### [Month Abbreviations](#/customization/month-abbreviations/) 
+### Month Abbreviations
 <div class="docs-method-prose">
 
 <div class="docs-method-signature">
@@ -534,13 +507,6 @@ From version **2.11.0** months can also be an object, specifying `standalone` an
         monthsShort : String[]
     });
     DateTime.locale('en', {
-        monthsShort : Function
-    });
-
-    DateTime.lang('en', {
-        monthsShort : String[]
-    });
-    DateTime.lang('en', {
         monthsShort : Function
     });
 
@@ -581,8 +547,9 @@ Like `Locale#months`, `Locale#monthsShort` can be a callback function as well.
 </article>
 
 <article class="docs-method">
+<a name="weekdaynames"></a>
 
-### [Weekday Names](#/customization/weekday-names/) 
+### Weekday Names
 <div class="docs-method-prose">
 
 <div class="docs-method-signature">
@@ -616,13 +583,6 @@ Like `Locale#months`, `Locale#monthsShort` can be a callback function as well.
         weekdays : Function
     });
 
-    DateTime.lang('en', {
-        weekdays : String[]
-    });
-    DateTime.lang('en', {
-        weekdays : Function
-    });
-
 </div>
 
 `Locale#weekdays` should be an array of the weekdays names.
@@ -641,7 +601,7 @@ Like `Locale#months`, `Locale#monthsShort` can be a callback function as well.
         }
     });
 
-**Note:** From version **2.11.0** format/standalone cases can be passed as well. `isFormat` will be used against the full format string to determine which form to use.
+**Note:** Format/standalone cases can be passed as well. `isFormat` will be used against the full format string to determine which form to use.
 
     DateTime.updateLocale('en', {
         weekdays : {
@@ -656,8 +616,9 @@ Like `Locale#months`, `Locale#monthsShort` can be a callback function as well.
 </article>
 
 <article class="docs-method">
+<a name="weekdayabbreviations"></a>
 
-### [Weekday Abbreviations](#/customization/weekday-abbreviations/) 
+### Weekday Abbreviations
 <div class="docs-method-prose">
 
 <div class="docs-method-signature">
@@ -673,13 +634,6 @@ Like `Locale#months`, `Locale#monthsShort` can be a callback function as well.
         weekdaysShort : String[]
     });
     DateTime.locale('en', {
-        weekdaysShort : Function
-    });
-
-    DateTime.lang('en', {
-        weekdaysShort : String[]
-    });
-    DateTime.lang('en', {
         weekdaysShort : Function
     });
 
@@ -704,8 +658,9 @@ Like `Locale#months`, `Locale#monthsShort` can be a callback function as well.
 </article>
 
 <article class="docs-method">
+<a name="minimalweekdayabbreviations"></a>
 
-### [Minimal Weekday Abbreviations](#/customization/weekday-min/)
+### Minimal Weekday Abbreviations
 <div class="docs-method-prose">
 
 <div class="docs-method-signature">
@@ -721,13 +676,6 @@ Like `Locale#months`, `Locale#monthsShort` can be a callback function as well.
         weekdaysMin : String[]
     });
     DateTime.locale('en', {
-        weekdaysMin : Function
-    });
-
-    DateTime.lang('en', {
-        weekdaysMin : String[]
-    });
-    DateTime.lang('en', {
         weekdaysMin : Function
     });
 
@@ -752,8 +700,9 @@ Like `Locale#months`, `Locale#monthsShort` can be a callback function as well.
 </article>
 
 <article class="docs-method">
+<a name="longdateformats"></a>
 
-### [Long Date Formats](#/customization/long-date-formats/) 
+### Long Date Formats
 <div class="docs-method-prose">
 
 <div class="docs-method-signature">
@@ -766,10 +715,6 @@ Like `Locale#months`, `Locale#monthsShort` can be a callback function as well.
     });
 
     DateTime.locale('en', {
-        longDateFormat : Object
-    });
-
-    DateTime.lang('en', {
         longDateFormat : Object
     });
 
@@ -809,9 +754,11 @@ You can eliminate the lowercase `l` tokens and they will be created automaticall
 
 </article>
 
+<a name="relativetime"></a>
 <article class="docs-method">
 
-### [Relative Time](#/customization/relative-time/) 
+
+### Relative Time
 <div class="docs-method-prose">
 
 <div class="docs-method-signature">
@@ -821,10 +768,6 @@ You can eliminate the lowercase `l` tokens and they will be created automaticall
     });
 
     DateTime.locale('en', {
-        relativeTime : Object
-    });
-
-    DateTime.lang('en', {
         relativeTime : Object
     });
 
@@ -871,9 +814,11 @@ The `isFuture` argument will be true if it is going to use the future suffix/pre
 
 </article>
 
+<a name="ampm"></a>
 <article class="docs-method">
 
-### [AM/PM](#/customization/am-pm/) 
+
+### AM/PM
 <div class="docs-method-prose">
 
 <div class="docs-method-signature">
@@ -886,9 +831,6 @@ The `isFuture` argument will be true if it is going to use the future suffix/pre
         meridiem : Function
     });
 
-    DateTime.lang('en', {
-        meridiem : Function
-    });
 
 </div>
 
