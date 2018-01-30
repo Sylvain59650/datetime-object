@@ -1,11 +1,4 @@
-//var { DateTime, TimeSpan } = 
-var DateTime = require("../distrib/datetime-object.min.js");
-
-//import { DateTime, TimeSpan } from "../sources/datetime-object-nodejs.js";
-//var { TimeSpan } = require("./sources/TimeSpan.js");
-
-// var DateTime = DateTimeModule.DateTime;
-// var TimeSpan = DateTimeModule.TimeSpan;
+var DateTime = require("../sources/datetime-object.js");
 
 var dt2 = new DateTime();
 
@@ -32,7 +25,6 @@ console.log(dt5.toString("DD/MM/YY HH:mm:ss"));
 
 var dt6 = DateTime.now();
 console.log(dt6.toString("DD/MM/YY HH:mm:ss"));
-console.log(dt6.ceil(2, "hours").toString("DD/MM/YY HH:mm:ss"));
 console.log(dt6.toString("DD/MM/YY HH:mm:ss"));
 console.log(dt6.toDate());
 
@@ -262,7 +254,7 @@ diff = dt52.diffAsTimeSpan(dt51);
 console.log(dt52.toString(), dt51.toString(), diff.toString("y MM D HH:mm:ss"), diff.totalHours());
 
 console.log(diff.humanize(true));
-debugger;
+
 var dt53 = DateTime.parse("2013-02-04T18:35:24+02:00", null, false, true);
 console.log("dt53", dt53.toString());
 
@@ -293,4 +285,13 @@ console.log(dt57.humanize(true));
 
 console.log(dt57.locale());
 
-console.log(dt57.ceil(10, "minutes").toString());
+
+var now = DateTime.now();
+console.log("now", now.toString());
+console.log("roundMinutes 5 true", now.roundMinutes(5, true).toString());
+console.log("roundMinutes 5 false", now.roundMinutes(5, false).toString());
+console.log("roundMinutes 5", now.roundMinutes(5).toString());
+
+console.log("roundSeconds", now.roundSeconds(10).toString());
+
+console.log("roundHours", now.roundHours(2).toString());

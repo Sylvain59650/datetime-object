@@ -29,8 +29,7 @@
   },
   "homepage": "https://github.com/Sylvain59650/datetime-object#readme",
   "dependencies": {
-    "moment": "^2.20.1",
-    "moment-round": "^1.0.1"
+    "moment": "^2.20.1"
   },
   "devDependencies": {
     "del": "^3.0.0",

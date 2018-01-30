@@ -27,8 +27,6 @@
     - [addHours](#addhours) 
     - [addMinutes](#addminutes) 
     - [addSeconds](#addseconds) 
-    - [ceil](#ceil)
-    - [floor](#floor)
     - [now](#now)
     - [today](#today) 
     - [round](#round)
@@ -41,7 +39,9 @@
     - [nearestThursday](#nearestthursday)
     - [nearestFriday](#nearestfriday)
     - [nearestSaturday](#nearestsaturday)
-
+    - [roundHours](#roundhours)
+    - [roundMinutes](#roundminutes)
+    - [roundSeconds](#roundseconds)
 
 
 - [Comparing DateTimes]()
@@ -96,66 +96,74 @@
 
 <article>
 
-## round
+## roundHours
 <div class="method-prototype">
 
-    DateTime.prototype.round(integer,interval)
-where interval can be "seconds","minutes","hours"
+    DateTime.prototype.roundHours(nbHours,past=true)
+where (integer) nbHours : integer between 0 and 24
+      (boolean) past: if true, round in the past, else futur
 </div>
 <div class="docs-method-prose">
 
-round the instance DateTime to a given interval.
+round the date to the nearest hour 
 </div>
 <div class="usage">
 
-    var m = new DateTime(); 
-    m.round(5, 'seconds'); 
-    m.round(3, 'minutes'); 
-    m.round(16, 'hours'); 
+    var m = new DateTime(); // 22:54:00
+    m.roundHours(2); // 22:00:00 
+    m.roundHours(5); // 20:00:00
+    m.roundHours(1); // 22:00:00
+    m.roundHours(1,false); // 23:00:00
 </div>
 </article>
 
 <article>
 
-## ceil
+## roundMinutes
 <div class="method-prototype">
 
-    DateTime.prototype.ceil(integer,interval)
-where interval can be "seconds","minutes","hours"
+    DateTime.prototype.roundMinutes(nbMinutes,past=true)
+where (integer) nbMinutes : integer between 0 and 60
+      (boolean) past: if true, round in the past, else futur
 </div>
 <div class="docs-method-prose">
 
-set the instance DateTime to the near ceil according a given interval.
+round the date to the nearest minutes 
 </div>
 <div class="usage">
-    var m = new DateTime(); 
-    m.ceil(5, 'seconds'); 
-    m.ceil(3, 'minutes'); 
-    m.ceil(16, 'hours'); 
+
+    var m = new DateTime(); // 22:54:25
+    m.roundMinutes(30); // 22:30:00 
+    m.roundMinutes(15); // 22:45:00
+    m.roundMinutes(1); // 22:54:00
+    m.roundMinutes(1,false); // 22:55:00
 </div>
 </article>
 
 
 <article>
 
-## floor
+## roundSeconds
 <div class="method-prototype">
 
-    DateTime.prototype.floor(integer,interval)
-where interval can be "seconds","minutes","hours"
+    DateTime.prototype.roundSeconds(nbSeconds,past=true)
+where (integer) nbSeconds : integer between 0 and 60
+      (boolean) past: if true, round in the past, else futur
 </div>
 <div class="docs-method-prose">
 
-set the instance DateTime to the near floor according a given interval.
+round the date to the nearest seconds 
 </div>
 <div class="usage">
 
-    var m = new DateTime(); 
-    m.floor(5, 'seconds'); 
-    m.floor(3, 'minutes'); 
-    m.floor(16, 'hours'); 
+    var m = new DateTime(); // 22:54:25 010
+    m.roundSeconds(30); // 22:54:00 
+    m.roundSeconds(15); // 22:54:15
+    m.roundSeconds(1); // 22:54:25
+    m.roundSeconds(1,false); // 22:54:26
 </div>
 </article>
+
 
 <article>
 <a name="nearestsunday"></a>

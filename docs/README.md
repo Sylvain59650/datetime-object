@@ -23,7 +23,7 @@
 
 dateTime-object was designed to work both with all browsers and with Node.js.
 It's a refactoring of [momentjs](https://momentjs.com/) for clean API and working with Objects.
-It requires moment and moment-round.
+It requires moment.
 
 # [Installation](#install) 
 
@@ -31,11 +31,11 @@ It requires moment and moment-round.
 ## download
 <code>
 
-    npm install moment moment-round datetime-object --save
+    npm install datetime-object --save
 
 OR
 
-    bower install moment moment-round datetime-object --save
+    bower install datetime-object --save
 </code>
 
 
@@ -46,7 +46,6 @@ OR
 <code>
 
     <script src="../node_modules/moment/min/moment.min.js"></script>
-    <script src="../node_modules/moment-round/dist/moment-round.min.js"></script>
     <script src="datetime-object.min.js"></script>;
 </code>
 

@@ -2,7 +2,6 @@
 
 <head>
   <script src="../node_modules/moment/min/moment.min.js"></script>
-  <script src="../node_modules/moment-round/dist/moment-round.min.js"></script>
   <script src="../distrib/datetime-object.min.js"></script>
 </head>
 
@@ -11,7 +10,7 @@
     debugger;
     var dt = new DateTime();
     console.log(dt.toString());
-    console.log(dt.ceil(10, "minutes").toString());
+    console.log(dt.roundHours(1).toString());
   </script>
 </body>
 

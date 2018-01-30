@@ -6,7 +6,7 @@ dateTime-object  was created to manipulate dates and times easily in javascript.
 
 This API was designed to work both with all browsers and with Node.js.
 It's a refactoring of [momentjs](https://momentjs.com/) for clean API and working with Objects.
-It requires moment and moment-round.
+It requires moment.
 
 
  <div class="Note" style="color:orange;font-style:italic">

@@ -1,9 +1,17 @@
+/**
+ * @license
+ * datetime-object 0.9.2
+ * Copyright Sylvain Longepée
+ * Released under MIT license <https://github.com/Sylvain59650/datetime-object/blob/master/LICENSE>
+ * Based on momentjs 2.20.1 by JS Foundation and other contributors <https://github.com/moment/moment/blob/develop/LICENSE>
+ */
+
 ;
 (function(moduleName, root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define(["moment", "moment-round"], factory);
+    define(["moment"], factory);
   } else if (typeof exports === 'object') {
-    module.exports = factory(require("moment"), require("moment-round"));
+    module.exports = factory(require("moment"));
   } else {
     root.DateTime = factory(moment);
   }
@@ -364,6 +372,48 @@
   DateTime.fn = function(name, fn) {
     DateTime.prototype.name = fn;
   };
+
+  DateTime.prototype.roundHours = function(nbHours, past) {
+    if (past === undefined) past = true;
+    var s = 0;
+    var current = this.mmt.hours();
+    while (s + nbHours <= current) { s += nbHours; }
+    if (!past) s += nbHours;
+    var dt = DateTime.fromMoment(this.mmt.clone());
+    dt.hours(s);
+    dt.minutes(0);
+    dt.seconds(0);
+    dt.milliSeconds(0);
+    return dt;
+  }
+
+  DateTime.prototype.roundMinutes = function(nbMinutes, past) {
+    if (past === undefined) past = true;
+    var s = 0;
+    var current = this.mmt.minutes();
+    while (s + nbMinutes <= current) { s += nbMinutes; }
+    if (!past) {
+      s += nbMinutes;
+    }
+    var dt = DateTime.fromMoment(this.mmt.clone());
+    dt.minutes(s);
+    dt.seconds(0);
+    dt.milliSeconds(0);
+    return dt;
+  }
+
+  DateTime.prototype.roundSeconds = function(nbSeconds, past) {
+    if (past === undefined) past = true;
+    var s = 0;
+    var current = this.mmt.seconds();
+    while (s + nbSeconds <= current) { s += nbSeconds; }
+    if (!past) s += nbSeconds;
+    var dt = DateTime.fromMoment(this.mmt.clone());
+    dt.seconds(s);
+    dt.milliSeconds(0);
+    return dt;
+  }
+
 
 
   moment.duration.fn.format = moment.duration.fn.format || function(mask) {
