@@ -1,17 +1,17 @@
-﻿var gulp = require('gulp');
+﻿const gulp = require("gulp");
 // var less = require('gulp-less');
 // var minifyCSS = require('gulp-csso');
 // var concatCss = require('gulp-concat-css');
 // var concatJs = require('gulp-concat-js');
-var concat = require("gulp-concat");
-var del = require('del');
+const concat = require("gulp-concat");
+const del = require("del");
 // var cssmin = require('gulp-cssmin');
-var uglify = require('gulp-uglify');
-var clean = require('gulp-clean');
-var debug = require('gulp-debug');
+const babel = require("gulp-babel");
+//const clean = require("gulp-clean");
+//const debug = require("gulp-debug");
 //var gulpSequence = require('gulp-sequence');
 //var gettext = require('gulp-angular-gettext');
-var watch = require('gulp-watch');
+const watch = require("gulp-watch");
 //var browserify = require('browserify');
 //var sourcemaps = require('gulp-sourcemaps');
 // var glob = require('glob');
@@ -27,16 +27,16 @@ var watch = require('gulp-watch');
 // var gutil = require('gulp-util');
 // var package = require('./package.json');
 // var eventStream = require('event-stream');
-var umd = require("gulp-umd");
-var gutil = require('gulp-util');
+//const umd = require("gulp-umd");
+//const gutil = require("gulp-util");
 
-var chemins = {
+const chemins = {
   sources: "./sources/",
-  distrib: './distrib/'
+  distrib: "./distrib/"
 };
 
 
-gulp.task('clean', function() {
+gulp.task("clean", function() {
   return del([
     chemins.distrib + "/*"
   ]);
@@ -49,23 +49,24 @@ gulp.task("datetime-object.min.js", () => {
       "sources/datetime-object.js"
     ])
     .pipe(concat("datetime-object.min.js"))
-    .pipe(uglify())
-    .on('error', function(err) { gutil.log(gutil.colors.red('[Error]'), err.toString()); })
-    // .pipe(umd())
+    .pipe(babel({
+      presets: ["es2015"],
+      compact: false
+    }))
     .pipe(gulp.dest(chemins.distrib))
 });
 
 
-gulp.task('watch:datetime-object.min.js', function() {
+gulp.task("watch:datetime-object.min.js", function() {
   watch("./sources/*.js", function() {
-    gulp.run('datetime-object.min.js');
+    gulp.run("datetime-object.min.js");
   });
 });
 
 
-gulp.task('default', ['datetime-object.min.js']);
+gulp.task("default", ["datetime-object.min.js"]);
 
 
-gulp.task('all', ['default']);
+gulp.task("all", ["default"]);
 
 gulp.task("watch", ["watch:datetime-object.min.js"]);
