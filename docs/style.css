@@ -1,3 +1,38 @@
+nav>li {
+  list-style-type: square;
+  background-color: darkblue;
+  color: white;
+  font-weight: 600;
+  width: 70%;
+  padding: 5px;
+  font-size: 12pt;
+  margin-bottom: 5px;
+  border-radius: 0px 0px 20px 0px;
+}
+
+nav>li>a {
+  color: rgb(226, 221, 221);
+  text-decoration: none;
+}
+
+nav>li:hover {
+  background-color: rgb(81, 81, 241);
+  color: white;
+  font-weight: bolder;
+}
+
+nav>li>a:hover {
+  color: white;
+}
+
+nav.submenu>li,
+nav.submenu>li:hover {
+  list-style-type: square;
+  background-color: darkblue;
+  border-radius: unset;
+  font-size: 10pt;
+}
+
 h1 {
   font-size: 13pt;
   color: gray;

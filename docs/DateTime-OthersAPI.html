@@ -12,9 +12,8 @@
 
   <div class="docs-content">
 
-    <h1>Main Contents</h1>
     <nav>
-      <li><a href="index.html#install">Installation</a></li>
+      <li><a href="#install">Installation</a></li>
       <li><a href="DateTime-Constructors.html">Constructors</a></li>
       <li><a href="DateTime-Parsing.html">Parsing</a></li>
       <li><a href="DateTime-Converters.html">Converters</a></li>
@@ -22,10 +21,10 @@
       <li><a href="DateTime-OthersAPI.html">Others API</a></li>
       <li>
         <span>Annex Classes</span>
-        <ul>
+        <nav class="submenu">
           <li><a href="TimeSpan.html">TimeSpan</a></li>
           <li><a href="DateTime-Locale.html">Locale</a></li>
-        </ul>
+        </nav>
       </li>
     </nav>
     <article class="docs-section">
@@ -86,19 +85,19 @@
       </nav>
       <article>
 
-
+        <a name="now"></a>
         <h2>now</h2>
         <code>var dt=DateTime.now();</code>
       </article>
 
       <article>
-
+        <a name="today"></a>
         <h2>today</h2>
         <code>var dt=DateTime.today();</code>
       </article>
 
       <article>
-
+        <a name="roundHours"></a>
         <h2>roundHours</h2>
         <code class="signature">
 DateTime.prototype.roundHours(nbHours,past=true) 
@@ -117,6 +116,7 @@ where (integer) nbHours : integer between 0 and 24 (boolean) past: if true, roun
       </article>
 
       <article>
+        <a name="roundMinutes"></a>
         <h2>roundMinutes</h2>
         <code>
     DateTime.prototype.roundMinutes(nbMinutes,past=true) 
@@ -136,7 +136,7 @@ where (integer) nbHours : integer between 0 and 24 (boolean) past: if true, roun
 
 
       <article>
-
+        <a name="roundSeconds"></a>
         <h2>roundSeconds</h2>
         <code>
           DateTime.prototype.roundSeconds(nbSeconds,past=true) 
@@ -273,6 +273,7 @@ where (integer) nbHours : integer between 0 and 24 (boolean) past: if true, roun
 
   </article>
 
+  <a name="daysInMonth"></a>
   <article>
     <h2>daysInMonth</h2>
     <div class="docs-method-prose">
@@ -282,7 +283,7 @@ where (integer) nbHours : integer between 0 and 24 (boolean) past: if true, roun
     </div>
   </article>
 
-
+  <a name="seconds"></a>
   <article>
 
     <h2>seconds</h2>
@@ -306,40 +307,40 @@ where (integer) nbHours : integer between 0 and 24 (boolean) past: if true, roun
   </article>
 
 
-
+  <a name="milliseconds"></a>
   <article>
 
-    <h2>milliseconds
-      <h3>Set</h3>
+    <h2>milliseconds</h2>
+    <h3>Set</h3>
 
-      <code class="signature">
+    <code class="signature">
 
             DateTime.prototype.milliseconds(integer)
           </code>
-      <div class="docs-method-prose">
-        Set milliseconds of the instance DateTime to a value Accepts numbers from 0 to 999. If the range is exceeded, it will bubble up to the seconds.
-        <code class="usage">
+    <div class="docs-method-prose">
+      Set milliseconds of the instance DateTime to a value Accepts numbers from 0 to 999. If the range is exceeded, it will bubble up to the seconds.
+      <code class="usage">
 
           var in500milliseconds=new DateTime().milliseconds(500);
         </code>
-      </div>
+    </div>
 
 
-      <h3>Get</h3>
-      <code class="signature">
+    <h3>Get</h3>
+    <code class="signature">
 
               DateTime.prototype.milliseconds()
             </code>
-      <div class="docs-method-prose">
-        Get the milliseconds of the instance DateTime
-      </div>
+    <div class="docs-method-prose">
+      Get the milliseconds of the instance DateTime
+    </div>
 
-      <code>var dt=new DateTime().milliseconds();
+    <code>var dt=new DateTime().milliseconds();
             </code>
   </article>
 
 
-
+  <a name="minutes"></a>
   <article>
 
     <h2>minutes</h2>
@@ -372,7 +373,7 @@ where (integer) nbHours : integer between 0 and 24 (boolean) past: if true, roun
   </article>
 
 
-
+  <a name="hours"></a>
   <article>
 
     <h2>hours</h2>
@@ -406,7 +407,7 @@ where (integer) nbHours : integer between 0 and 24 (boolean) past: if true, roun
   </article>
 
 
-
+  <a name="dayOfWeek"></a>
   <h2>dayOfWeek</h2>
   <h3>Set</h3>
   <code class="signature">DateTime.prototype.dayOfWeek(integer) </code>
@@ -427,6 +428,7 @@ where (integer) nbHours : integer between 0 and 24 (boolean) past: if true, roun
   </article>
 
   <article>
+    <a name="weekday"></a>
     <h2>weekday (Locale Aware)</h2>
     <div class="docs-method-prose">
       <code class="signature">new DateTime().weekday(Number); new DateTime().weekday();</code>
@@ -441,7 +443,7 @@ new DateTime().weekday(7);
 </code>
     </div>
   </article>
-
+  <a name="isoWeekday"></a>
   <article>
     <h2>isoWeekday</h2>
     <div class="docs-method-prose">
@@ -460,7 +462,7 @@ new DateTime().isoWeekday("Monday");
   </article>
 
   <article>
-
+    <a name="dayOfYear"></a>
     <h2>dayOfYear</h2>
     <div class="docs-method-prose">
 
@@ -472,7 +474,7 @@ new DateTime().isoWeekday("Monday");
   </article>
 
   <article>
-
+    <a name="week"></a>
     <h2>week</h2>
     <div class="docs-method-prose">
 
@@ -485,7 +487,7 @@ new DateTime().isoWeekday("Monday");
   </article>
 
   <article>
-
+    <a name="isoWeek"></a>
     <h2>isoWeek</h2>
     <div class="docs-method-prose">
 
@@ -503,7 +505,7 @@ new DateTime().isoWeekday("Monday");
   </article>
 
   <article>
-
+    <a name="month"></a>
     <h2>month</h2>
     <div class="docs-method-prose">
 
@@ -521,7 +523,7 @@ new DateTime().isoWeekday("Monday");
 
 
   <article>
-
+    <a name="year"></a>
     <h2>year</h2>
     <div class="docs-method-prose">
 
@@ -535,6 +537,7 @@ new DateTime().isoWeekday("Monday");
   </article>
 
   <article>
+    <a name="weekYear"></a>
     <h2>weekYear</h2>
     <div class="docs-method-prose">
 
@@ -549,7 +552,7 @@ new DateTime().isoWeekday("Monday");
   </article>
 
   <article>
-
+    <a name="isoWeekYear"></a>
     <h2>isoWeekYear</h2>
     <div class="docs-method-prose">
 
@@ -564,7 +567,7 @@ new DateTime().isoWeekday("Monday");
   </article>
 
   <article>
-
+    <a name="weeksInYear"></a>
     <h2>weeksInYear</h2>
     <div class="docs-method-prose">
 
@@ -575,7 +578,7 @@ new DateTime().isoWeekday("Monday");
   </article>
 
   <article>
-
+    <a name="isoWeeksInYear"></a>
     <h2>isoWeeksInYear</h2>
     <div class="docs-method-prose">
 
@@ -594,7 +597,7 @@ new DateTime().isoWeekday("Monday");
 
 
     <article>
-
+      <a name="lastDayOfMonth"></a>
       <h2>lastDayOfMonth</h2>
       <div class="docs-method-prose">
         Move DateTime instance to the last day of the month. Time will be "23:59:59".
@@ -607,7 +610,7 @@ new DateTime().isoWeekday("Monday");
     </article>
 
     <article>
-
+      <a name="firstDayOfMonth"></a>
       <h2>firstDayOfMonth</h2>
       <div class="docs-method-prose">
         Move DateTime instance to the first day of the month. Time will be "00:00:00".
@@ -621,7 +624,7 @@ new DateTime().isoWeekday("Monday");
 
 
     <article>
-
+      <a name="addYears"></a>
 
       <h2>addYears</h2>
 
@@ -637,7 +640,7 @@ new DateTime().isoWeekday("Monday");
     </article>
 
     <article>
-
+      <a name="addMonths"></a>
       <h2>addMonths</h2>
 
       <code class="signature">
@@ -654,7 +657,7 @@ new DateTime().isoWeekday("Monday");
 
 
     <article>
-
+      <a name="addDays"></a>
       <h2>addDays</h2>
 
       <code class="signature">
@@ -670,7 +673,7 @@ new DateTime().isoWeekday("Monday");
 
 
     <article>
-
+      <a name="addHours"></a>
       <h2>addHours</h2>
 
       <code class="signature">
@@ -685,7 +688,7 @@ new DateTime().isoWeekday("Monday");
     </article>
 
     <article>
-
+      <a name="addMinutes"></a>
       <h2>addMinutes</h2>
 
       <code class="signature">
@@ -700,7 +703,7 @@ new DateTime().isoWeekday("Monday");
     </article>
 
     <article>
-
+      <a name="addSeconds"></a>
       <h2>addSeconds</h2>
 
       <code class="signature">
@@ -716,7 +719,7 @@ new DateTime().isoWeekday("Monday");
 
 
     <article>
-
+      <a name="add"></a>
       <h2>add</h2>
 
       <code class="signature">
@@ -753,7 +756,7 @@ new DateTime().isoWeekday("Monday");
 
 
   <article>
-
+    <a name="diff"></a>
     <h2>diff</h2>
     <div class="docs-method-prose">
 
