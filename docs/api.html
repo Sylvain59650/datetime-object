@@ -1,0 +1,65 @@
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+
+  <div class="Note" style="color:orange;font-style:italic">
+
+    The lastest version of this document is available on <a href="https://sylvain59650.github.io/datetime-object/">Github > datetime-object</a>
+  </div>
+
+  <div class="docs-content">
+
+    <h1>Main Contents</h1>
+    <ul>
+      <li><a href="index.html#install">Installation</a></li>
+      <li><a href="DateTime-Constructors.html">Constructors</a></li>
+      <li><a href="DateTime-Parsing.html">Parsing</a></li>
+      <li><a href="DateTime-Converters.html">Converters</a></li>
+      <li><a href="DateTime-Displays.html">Displays</a></li>
+      <li><a href="DateTime-OthersAPI.html">Others API</a></li>
+      <li>
+        <span>Annex Classes</span>
+        <ul>
+          <li><a href="TimeSpan.html">TimeSpan</a></li>
+          <li><a href="DateTime-Locale.html">Locale</a></li>
+        </ul>
+      </li>
+    </ul>
+
+    <article class="docs-section">
+
+      <h1>This Section dateTime-object was designed to work both with all browsers and with Node.js. It's a refactoring of
+        <a href="https://momentjs.com/">momentjs</a> for clean API and working with Objects. It requires moment.
+        <h1>Installation</a>
+        </h1>
+        <code>
+      npm install datetime-object --save OR bower install datetime-object --save
+      </code>
+        <h1>references</h1>
+        <h2>in browser</h2>
+
+
+        <xmp>
+          <script src="../node_modules/moment/min/moment.min.js"></script>
+          <script src="datetime-object.min.js"></script>
+        </xmp>
+
+        <h2>in Node.js</h2>
+        <code>
+      require("datetime-object");
+      </code>
+
+        <h1>usage</h1>
+        <code>
+
+     var dt=new DateTime();
+     console.log(dt.toString());
+</code>
+    </article>
+</body>
+
+</html>

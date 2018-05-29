@@ -1,14 +1,4 @@
-/**
- * @license
- * datetime-object 0.9.2
- * Copyright Sylvain Longepée
- * Released under MIT license <https://github.com/Sylvain59650/datetime-object/blob/master/LICENSE>
- * Based on momentjs 2.20.1 by JS Foundation and other contributors <https://github.com/moment/moment/blob/develop/LICENSE>
- */
-
-
-/* eslint-disable */
-;
+/* eslint-disable */ ;
 (function(moduleName, root, factory) {
   if (typeof define === "function" && define.amd) {
     define(["moment"], factory);

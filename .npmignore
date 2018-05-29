@@ -1,0 +1,8 @@
+node_modules/
+docs/
+tests/
+src/
+.vscode
+gulpfile.js
+package-lock.json
+eslint*
