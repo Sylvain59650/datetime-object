@@ -1,32 +1,32 @@
  <div class="Note" style="color:orange;font-style:italic">
  
-  The lastest version of this document is available on [Github > datetime-object](https://github.com/Sylvain59650/datetime-object/blob/master/README.md)
+  The lastest version of this document is available on [Github > datetime-object](https://github.com/Sylvain59650/datetime-object/blob/master/README.html)
 </div>
 
  <div class="docs-content">
 
-# Contents
-- [Installation](README.md)
-- [Constructors](#constructors)
-- [Parsing](DateTime-Parsing.md)
-- [Converters](DateTime-Converters.md)
-- [Displays](DateTime-Displays.md)
-- [Others API](DateTime-OthersAPI.md)
-- [Annex Classes]()
-  - [TimeSpan](TimeSpan.md)
-  - [Locale](DateTime-Locale.md)
+<h1>Contents
+<li>[Installation](README.html)
+<li>[Constructors](#constructors)
+<li>[Parsing](DateTime-Parsing.html)
+<li>[Converters](DateTime-Converters.html)
+<li>[Displays](DateTime-Displays.html)
+<li>[Others API](DateTime-OthersAPI.html)
+<li>[Annex Classes
+  <li>[TimeSpan](TimeSpan.html)
+  <li>[Locale](DateTime-Locale.html)
 
 
 
 <article class="docs-section">
 
-# Constructors
+<h1>Constructors
 
 <article class="docs-method">
 
 <div class="docs-method-prose">
 
-<div class="docs-method-signature">
+<code class="signature">
 
     new DateTime(stringDate, format);
 
@@ -49,7 +49,7 @@ Unless you specify a time zone offset, parsing a string will create a date in th
 
 The parsing tokens are similar to the formatting tokens used in `DateTime#toString`.
 
-## Year, month, and day tokens
+<h2>Year, month, and day tokens
 
 <table>
 <thead>
@@ -120,7 +120,7 @@ The parsing tokens are similar to the formatting tokens used in `DateTime#toStri
 
 `Y` will match any number, signed or unsigned. It is useful for years that are not 4 digits or are before the common era. It can be used for any year.
 
-## Week year, week, and weekday tokens
+<h2>Week year, week, and weekday tokens
 
 For these, the lowercase tokens use the locale aware week start days, and the uppercase tokens use the [ISO week date](https://en.wikipedia.org/wiki/ISO_week_date) start days.
 
@@ -181,7 +181,7 @@ For these, the lowercase tokens use the locale aware week start days, and the up
 </tbody>
 </table>
 
-## Hour, minute, second, millisecond, and offset tokens
+<h2>Hour, minute, second, millisecond, and offset tokens
 
 <table>
 <thead>

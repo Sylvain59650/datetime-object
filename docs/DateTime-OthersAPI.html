@@ -1,0 +1,802 @@
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+  <div class="Note" style="color:orange;font-style:italic">
+
+    The lastest version of this document is available on <a href="https://sylvain59650.github.io/datetime-object/">Github > datetime-object</a>
+  </div>
+
+  <div class="docs-content">
+
+    <h1>Main Contents</h1>
+    <nav>
+      <li><a href="index.html#install">Installation</a></li>
+      <li><a href="DateTime-Constructors.html">Constructors</a></li>
+      <li><a href="DateTime-Parsing.html">Parsing</a></li>
+      <li><a href="DateTime-Converters.html">Converters</a></li>
+      <li><a href="DateTime-Displays.html">Displays</a></li>
+      <li><a href="DateTime-OthersAPI.html">Others API</a></li>
+      <li>
+        <span>Annex Classes</span>
+        <ul>
+          <li><a href="TimeSpan.html">TimeSpan</a></li>
+          <li><a href="DateTime-Locale.html">Locale</a></li>
+        </ul>
+      </li>
+    </nav>
+    <article class="docs-section">
+      <h1>Others API Section</h1>
+      <nav>
+        <li><a href="">Create new DateTime</a></li>
+        <li><a href="#add">add</a></li>
+        <li><a href="#addyears">addYears</a></li>
+        <li><a href="#addmonths">addMonths</a></li>
+        <li><a href="#adddays">addDays</a></li>
+        <li><a href="#addhours">addHours</a></li>
+        <li><a href="#addminutes">addMinutes</a></li>
+        <li><a href="#addseconds">addSeconds</a></li>
+        <li><a href="#now">now</a></li>
+        <li><a href="#today">today</a></li>
+        <li><a href="#round">round</a></li>
+        <li><a href="#firstdayofmonth">firstDayOfMonth</a></li>
+        <li><a href="#lastdayofmonth">lastDayOfMonth</a></li>
+        <li><a href="#nearestsunday">nearestSunday,nearestMonday,...</a></li>
+        <li><a href="#nearestmonday">nearestMonday</a></li>
+        <li><a href="#nearesttuesday">nearestTuesday</a></li>
+        <li><a href="#nearestwednesday">nearestWednesday</a></li>
+        <li><a href="#nearestthursday">nearestThursday</a></li>
+        <li><a href="#nearestfriday">nearestFriday</a></li>
+        <li><a href="#nearestsaturday">nearestSaturday</a></li>
+        <li><a href="#roundhours">roundHours</a></li>
+        <li><a href="#roundminutes">roundMinutes</a></li>
+        <li><a href="#roundseconds">roundSeconds</a></li>
+        <li><a href="">Comparing DateTimes</a></li>
+        <li><a href="#compare">compare</a></li>
+        <li><a href="#diff">diff</a></li>
+        <li><a href="#isafter">isAfter</a></li>
+        <li><a href="#isbefore">isBefore</a></li>
+        <li><a href="#issame">isSame</a></li>
+        <li><a href="#issameorafter">isSameOrAfter</a></li>
+        <li><a href="#issameorbefore">isSameOrBefore</a></li>
+        <li><a href="#isbetween">isBetween</a></li>
+        <li><a href="">Operations on a DateTime instance</a></li>
+        <li><a href="#seconds">seconds</a></li>
+        <li><a href="#milliseconds">milliseconds</a></li>
+        <li><a href="#minutes">minutes</a></li>
+        <li><a href="#hours">hours</a></li>
+        <li><a href="#weekday">weekday (Locale Aware)</a></li>
+        <li><a href="#isoweekday">isoWeekday</a></li>
+        <li><a href="#dayofweek">dayOfWeek</a></li>
+        <li><a href="#dayofyear">dayOfYear</a></li>
+        <li><a href="#week">week</a></li>
+        <li><a href="#isoWeek">isoWeek</a></li>
+        <li><a href="#month">month</a></li>
+        <li><a href="#year">year</a></li>
+        <li><a href="#weekyear">weekYear</a></li>
+        <li><a href="#isoweekyear">isoWeekYear</a></li>
+        <li><a href="#weeksinyear">weeksInYear</a></li>
+        <li><a href="#isoweeksinyear">isoWeeksInYear</a></li>
+        <li><a href="">Statics methods</a></li>
+        <li><a href="#isleapyear">isLeapYear</a></li>
+        <li><a href="#daysinmonth">daysInMonth</a></li>
+      </nav>
+      <article>
+
+
+        <h2>now</h2>
+        <code>var dt=DateTime.now();</code>
+      </article>
+
+      <article>
+
+        <h2>today</h2>
+        <code>var dt=DateTime.today();</code>
+      </article>
+
+      <article>
+
+        <h2>roundHours</h2>
+        <code class="signature">
+DateTime.prototype.roundHours(nbHours,past=true) 
+where (integer) nbHours : integer between 0 and 24 (boolean) past: if true, round in the past, else futur
+          </code>
+        <div class="docs-method-prose">
+          round the date to the nearest hour
+        </div>
+        <code class="usage">
+            var m = new DateTime(); // 22:54:00 
+            m.roundHours(2); // 22:00:00 
+            m.roundHours(5); // 20:00:00 
+            m.roundHours(1); // 22:00:00 
+            m.roundHours(1,false); // 23:00:00
+          </code>
+      </article>
+
+      <article>
+        <h2>roundMinutes</h2>
+        <code>
+    DateTime.prototype.roundMinutes(nbMinutes,past=true) 
+    where (integer) nbMinutes : integer between 0 and 60 (boolean) past: if true, round in the past, else futur
+  </code>
+        <div class="docs-method-prose">
+          round the date to the nearest minutes
+        </div>
+        <code>
+    var m = new DateTime(); // 22:54:25 
+    m.roundMinutes(30); // 22:30:00 
+    m.roundMinutes(15); // 22:45:00 
+    m.roundMinutes(1); // 22:54:00 
+    m.roundMinutes(1,false); // 22:55:00
+  </code>
+      </article>
+
+
+      <article>
+
+        <h2>roundSeconds</h2>
+        <code>
+          DateTime.prototype.roundSeconds(nbSeconds,past=true) 
+          where (integer) nbSeconds : integer between 0 and 60 (boolean) past: if true, round in the past, else futur
+        </code>
+        <div class="docs-method-prose">
+          round the date to the nearest seconds
+        </div>
+        <code>
+          var m = new DateTime(); // 22:54:25 
+          m.roundSeconds(30); // 22:54:00 
+          m.roundSeconds(15); // 22:54:15 
+          m.roundSeconds(1); // 22:54:25 
+          m.roundSeconds(1,false); // 22:54:26
+        </code>
+      </article>
+
+
+      <article>
+        <a name="nearestsunday"></a>
+
+        <h2>nearestSunday, nearestMonday, nearestTuesday, nearestWednesday, nearestThursday, nearestFriday, nearestSaturday</h2>
+        <code>
+          DateTime.prototype.nearestSunday(intDirection) 
+          DateTime.prototype.nearestMonday(intDirection) 
+          DateTime.prototype.nearestTuesday(intDirection) 
+          DateTime.prototype.nearestWednesday(intDirection)
+          DateTime.prototype.nearestThursday(intDirection)
+          DateTime.prototype.nearestFriday(intDirection)
+          DateTime.prototype.nearestSaturday(intDirection)
+        </code>
+        <div class="docs-method-prose">
+
+          returns the closest date corresponding to the day of the week, in the future or the past according to the parameter intDirection.
+        </div>
+        <code>
+          var dt = new DateTime("21/01/2018","DD/MM/YYYY"); ==> Sunday 
+          var nextSaturday=dt.nearestSaturday(1); 
+          var prevWenesday=dt.nearestWednesday(-1); 
+          var dt2=dt.nearestSunday(1) ==> "21/01/2018" ~dt 
+          var dt3=dt.nearestSunday(-1) ==> "14/01/2018"
+        </code>
+      </article>
+
+      <article>
+        <a name="isbefore"></a>
+        <h2>isBefore</h2>
+        <div class="docs-method-prose">
+          Check if a DateTime is before another DateTime.
+        </div>
+        <code class="signature">new DateTime().isBefore(DateTime);</code>
+        <code>new DateTime('2010-10-20').isBefore(new DateTime('2010-10-21')); </code>
+      </article>
+
+      <article>
+        <a name="issame"></a>
+        <h2>isSame</h2>
+        <div class="docs-method-prose">
+          Check if a DateTime is the same as another DateTime.
+        </div>
+        <code class="signature">new DateTime().isSame(DateTime);</code>
+        <code>
+    new DateTime('2010-10-20').isSame(new DateTime('2010-10-20')); 
+</code>
+      </article>
+
+      <article>
+        <a name="isafter"></a>
+        <h2>isAfter</h2>
+        <div class="docs-method-prose">
+          Check if a DateTime is after another DateTime.
+        </div>
+        <code class="signature">
+        new DateTime().isAfter(DateTime);
+      </code>
+
+        <code>new DateTime('2010-10-20').isAfter(new DateTime('2010-10-19'));</code>
+  </div>
+  </article>
+
+  <a name="issameorbefore"></a>
+  <article>
+
+    <h2>isSameOrBefore</h2>
+    <div class="docs-method-prose">
+    </div>
+    <code class="signature">new DateTime().isSameOrBefore(DateTime);
+    </code>
+  </article>
+
+  <a name="issameorafter"></a>
+  <article>
+    <h2>isSameOrAfter</h2>
+    <div class="docs-method-prose">
+      Check if a DateTime is same or after another DateTime.
+      <code class="signature">new DateTime().isSameOrAfter(DateTime);</code>
+      <code>new DateTime('2010-10-20').isSameOrAfter(new DateTime('2010-10-19'));</code>
+    </div>
+  </article>
+
+  <a name="issbetween"></a>
+  <article>
+    <h2>isBetween</h2>
+    <div class="docs-method-prose">
+      Check if a DateTime is between two other DateTimes, optionally looking at unit scale (minutes, hours, days, etc). The match is exclusive.
+    </div>
+    <code class="signature">new DateTime().isBetween(DateTime1, DateTime2); new DateTime().isBetween(DateTime1, DateTime2, border);
+      </code>
+
+    <code>
+      new DateTime('2010-10-20').isBetween(new DateTime('2010-10-19'), new DateTime('2010-10-25'));
+      </code>
+    <p>border is 2 characters should be `[` or `]` If the first character is` [`, that indicates inclusion of the value, otherwise exclusion. If the second character is`]`, that indicates inclusion of the value, otherwise exclusion.
+    </p>
+    </code>
+    <code>
+    new DateTime('2016-10-30').isBetween(new DateTime('2016-10-30'), new DateTime('2016-12-30', '[]'); ==> `true`
+    new DateTime('2016-10-30').isBetween(new DateTime('2016-10-30'), new DateTime('2016-12-30', '[['); ==> false
+    new DateTime('2016-10-30').isBetween(new DateTime('2016-01-01'), new DateTime('2016-10-30', ']]'); ==> true 
+    new DateTime('2016-10-30').isBetween(new DateTime('2016-01-01'), new DateTime('2016-10-30', '[['); ==> false
+</code> If the inclusivity parameter is not specified, DateTime will default to ` []`.
+    </div>
+  </article>
+
+  <a name="isleapyear"></a>
+  <article>
+
+    <h2>isLeapYear</h2>
+    <div class="docs-method-prose">
+
+      returns `true` if that year is a leap year, else `false`.
+      <code> DateTime.isLeapYear(year)</code>
+    </div>
+
+  </article>
+
+  <article>
+    <h2>daysInMonth</h2>
+    <div class="docs-method-prose">
+
+      returns the number of days in the month & year
+      <code>DateTime.daysInMonth(month, year)</code>
+    </div>
+  </article>
+
+
+  <article>
+
+    <h2>seconds</h2>
+    <h3>Set</h3>
+    <code class="signature">
+
+            DateTime.prototype.seconds(integer)
+          </code>
+    <div class="docs-method-prose">
+      Set seconds of the instance DateTime to a value Accepts numbers from 0 to 59. If the range is exceeded, it will bubble up to the minutes.
+    </div>
+
+    <h3>Get</h3>
+    <code class="signature">
+
+              DateTime.prototype.seconds()
+            </code>
+    <div class="docs-method-prose">
+      Get the seconds of the instance DateTime
+    </div>
+  </article>
+
+
+
+  <article>
+
+    <h2>milliseconds
+      <h3>Set</h3>
+
+      <code class="signature">
+
+            DateTime.prototype.milliseconds(integer)
+          </code>
+      <div class="docs-method-prose">
+        Set milliseconds of the instance DateTime to a value Accepts numbers from 0 to 999. If the range is exceeded, it will bubble up to the seconds.
+        <code class="usage">
+
+          var in500milliseconds=new DateTime().milliseconds(500);
+        </code>
+      </div>
+
+
+      <h3>Get</h3>
+      <code class="signature">
+
+              DateTime.prototype.milliseconds()
+            </code>
+      <div class="docs-method-prose">
+        Get the milliseconds of the instance DateTime
+      </div>
+
+      <code>var dt=new DateTime().milliseconds();
+            </code>
+  </article>
+
+
+
+  <article>
+
+    <h2>minutes</h2>
+    <h3>Set</h3>
+    <code class="signature">
+
+            DateTime.prototype.minutes(integer)
+          </code>
+    <div class="docs-method-prose">
+      Set minutes of the instance DateTime to a value Accepts numbers from 0 to 59\. If the range is exceeded, it will bubble up to the hour.
+      <code>
+
+              var in50minutes=new DateTime().minutes(50);
+            </code>
+    </div>
+
+    <h3>Get</h3>
+    <code class="signature">
+
+              DateTime.prototype.minutes()
+            </code>
+    <div class="docs-method-prose">
+      Get the minutes of the instance DateTime
+    </div>
+
+    <code class="usage">
+
+              var currentMinutes=new DateTime().minutes();
+            </code>
+  </article>
+
+
+
+  <article>
+
+    <h2>hours</h2>
+    <h3>Set</h3>
+    <code class="signature">
+
+            DateTime.prototype.hours(integer)
+          </code>
+    <div class="docs-method-prose">
+      Set hours of the instance DateTime to a value Accepts numbers from 0 to 23\. If the range is exceeded, it will bubble up to the day.
+
+      <code class="usage">
+
+              var in12Hours=new DateTime().hours(12);
+            </code>
+    </div>
+
+    <h3>Get</h3>
+    <code class="signature">
+
+              DateTime.prototype.hours()
+            </code>
+    <div class="docs-method-prose">
+      Get the hours of the instance DateTime
+    </div>
+
+    <code class="usage">
+
+              var currentHour=new DateTime().hours();
+            </code>
+  </article>
+
+
+
+  <h2>dayOfWeek</h2>
+  <h3>Set</h3>
+  <code class="signature">DateTime.prototype.dayOfWeek(integer) </code>
+  <div class="docs-method-prose">
+    This method can be used to set the day of the week, with Sunday as 0 and Saturday as 6. If the range is exceeded, it will bubble up to other weeks.
+    <code class="usage">var nextMonday=new DateTime().dayOfWeek(1);</code>
+  </div>
+
+  <h3>Get</h3>
+  <code class="signature">
+            DateTime.prototype.dayOfWeek()
+          </code>
+  <div class="docs-method-prose">
+    Get the dayOfWeek of the instance DateTime new DateTime().day(-7); new DateTime().day(7); new DateTime().day(10); new DateTime().day(24);
+  </div>
+
+  <code class="usage">var currentDay=new DateTime().dayOfWeek();</code>
+  </article>
+
+  <article>
+    <h2>weekday (Locale Aware)</h2>
+    <div class="docs-method-prose">
+      <code class="signature">new DateTime().weekday(Number); new DateTime().weekday();</code>
+      <p>Gets or sets the day of the week according to the locale. If the locale assigns Monday as the first day of the week, `new DateTime().weekday(0)` will be Monday. If Sunday is the first day of the week, `new DateTime().weekday(0)` will be Sunday.
+        As with `DateTime#day`, if the range is exceeded, it will bubble up to other weeks.
+      </p>
+      <code>
+new DateTime().weekday(-7); 
+new DateTime().weekday(7);
+new DateTime().weekday(-7);
+new DateTime().weekday(7);
+</code>
+    </div>
+  </article>
+
+  <article>
+    <h2>isoWeekday</h2>
+    <div class="docs-method-prose">
+      <code class="signature">new DateTime().isoWeekday(Number); new DateTime().isoWeekday();</code>
+      <p>
+        Gets or sets the <a href="https://en.wikipedia.org/wiki/ISO_week_date">ISO day of the week</a> with `1` being Monday and `7` being Sunday. As with `DateTime#day`, if the range is exceeded, it will bubble up to other weeks.
+      </p>
+      <code>
+new DateTime().isoWeekday(1); 
+new DateTime().isoWeekday(7);
+    </code> A day name is also supported. This is parsed in the DateTime's current locale.
+      <code>
+new DateTime().isoWeekday("Sunday"); 
+new DateTime().isoWeekday("Monday");
+</code>
+  </article>
+
+  <article>
+
+    <h2>dayOfYear</h2>
+    <div class="docs-method-prose">
+
+      <code class="signature">new DateTime().dayOfYear(Number); new DateTime().dayOfYear();</code>
+      <p>Gets or sets the day of the year. Accepts numbers from 1 to 366\. If the range is exceeded, it will bubble up to the years.
+      </p>
+    </div>
+
+  </article>
+
+  <article>
+
+    <h2>week</h2>
+    <div class="docs-method-prose">
+
+      <code class="signature">new DateTime().week(Number); new DateTime().week();</code> Gets or sets the week of the year.
+      <p>Because different locales define week of year numbering differently, DateTime.js added `DateTime#week` to get/set the localized week of the year. The week of the year varies depending on which day is the first day of the week (Sunday, Monday, etc),
+        and which week is the first week of the year. For example, in the United States, Sunday is the first day of the week. The week with January 1st in it is the first week of the year. In France, Monday is the first day of the week, and the week with
+        January 4th is the first week of the year. The output of `DateTime#week` will depend on the [locale](#/i18n) for that DateTime. When setting the week of the year, the day of the week is retained.</p>
+    </div>
+
+  </article>
+
+  <article>
+
+    <h2>isoWeek</h2>
+    <div class="docs-method-prose">
+
+      <code class="signature">
+                  new DateTime().isoWeek(Number); 
+                  new DateTime().isoWeek(); 
+                  new DateTime().isoWeeks(Number); 
+                  new DateTime().isoWeeks();
+                </code>
+      <p>
+        Gets or sets the <a href="https://en.wikipedia.org/wiki/ISO_week_date">ISO week of the year</a>. When setting the week of the year, the day of the week is retained.
+      </p>
+    </div>
+
+  </article>
+
+  <article>
+
+    <h2>month</h2>
+    <div class="docs-method-prose">
+
+      <code class="signature">
+
+                  new DateTime().month(Number|String); new DateTime().month();
+
+                </code> Gets or sets the month. Accepts numbers from 0 to 11\. If the range is exceeded, it will bubble up to the year. **Note:** Months are zero indexed, so January is month 0. a month name is also supported. This is parsed in the
+      DateTime's current locale. new DateTime().month("January"); new DateTime().month("Feb"); new DateTime(2012, 0, 31).month(1).toString("YYYY-MM-DD"); new DateTime(2012, 0, 31).month(1).toString("YYYY-MM-DD");
+
+    </div>
+
+  </article>
+
+
+
+  <article>
+
+    <h2>year</h2>
+    <div class="docs-method-prose">
+
+      <code class="signature">
+                  new DateTime().year(Number); 
+                  new DateTime().year();
+</code> Gets or sets the year. Accepts numbers from -270,000 to 270,000.
+
+    </div>
+
+  </article>
+
+  <article>
+    <h2>weekYear</h2>
+    <div class="docs-method-prose">
+
+      <code class="signature">
+        new DateTime().weekYear(Number); 
+        new DateTime().weekYear();</code>
+      <p>Gets or sets the week-year according to the locale. Because the first day of the first week does not always fall on the first day of the year, sometimes the week-year will differ from the month year. For example, in the US, the week that contains
+        Jan 1 is always the first week. In the US, weeks also start on Sunday. If Jan 1 was a Monday, Dec 31 would belong to the same week as Jan 1, and thus the same week-year as Jan 1. Dec 30 would have a different week-year than Dec 31.
+      </p>
+    </div>
+
+  </article>
+
+  <article>
+
+    <h2>isoWeekYear</h2>
+    <div class="docs-method-prose">
+
+      <code class="signature">
+
+                  new DateTime().isoWeekYear(Number); new DateTime().isoWeekYear();
+
+                </code> Gets or sets the <a href="https://en.wikipedia.org/wiki/ISO_week_date">ISO week-year</a> .
+
+    </div>
+
+  </article>
+
+  <article>
+
+    <h2>weeksInYear</h2>
+    <div class="docs-method-prose">
+
+      Gets the number of weeks according to locale in the current DateTime's year.
+
+    </div>
+
+  </article>
+
+  <article>
+
+    <h2>isoWeeksInYear</h2>
+    <div class="docs-method-prose">
+
+      <code class="signature">
+
+                  new DateTime().isoWeeksInYear();
+
+                </code>
+      <p>Gets the number of weeks in the current DateTime's year, according to <a href="https://en.wikipedia.org/wiki/ISO_week_date">ISO weeks</a> .
+      </p>
+    </div>
+
+  </article>
+
+  <article>
+
+
+    <article>
+
+      <h2>lastDayOfMonth</h2>
+      <div class="docs-method-prose">
+        Move DateTime instance to the last day of the month. Time will be "23:59:59".
+      </div>
+      <code class="signature">
+
+                  new DateTime().lastDayOfMonth();
+
+                </code>
+    </article>
+
+    <article>
+
+      <h2>firstDayOfMonth</h2>
+      <div class="docs-method-prose">
+        Move DateTime instance to the first day of the month. Time will be "00:00:00".
+      </div>
+      <code class="signature">
+
+                  new DateTime().firstDayOfMonth();
+
+                </code>
+    </article>
+
+
+    <article>
+
+
+      <h2>addYears</h2>
+
+      <code class="signature">
+
+                  new DateTime().addYears(number)
+                </code>
+      <code>
+
+    var dt1=DateTime.now();
+    var dt2=dt1.addYears(5);
+</code> This method returns a new DateTime.
+    </article>
+
+    <article>
+
+      <h2>addMonths</h2>
+
+      <code class="signature">
+
+                  new DateTime().addMonths(number)
+                </code>
+      <code>
+
+    var dt1=DateTime.now();
+    var dt2=dt1.addMonths(5);
+</code> This method returns a new DateTime.
+    </article>
+
+
+
+    <article>
+
+      <h2>addDays</h2>
+
+      <code class="signature">
+
+                  new DateTime().addDays(number)
+                </code>
+      <code>
+
+    var dt1=DateTime.now();
+    var dt2=dt1.addDays(5);
+</code> This method returns a new DateTime.
+    </article>
+
+
+    <article>
+
+      <h2>addHours</h2>
+
+      <code class="signature">
+
+                  new DateTime().addHours(number)
+                </code>
+      <code>
+
+    var dt1=DateTime.now();
+    var dt2=dt1.addHours(5);
+</code> This method returns a new DateTime.
+    </article>
+
+    <article>
+
+      <h2>addMinutes</h2>
+
+      <code class="signature">
+
+                  new DateTime().addMinutes(number)
+                </code>
+      <code>
+
+    var dt1=DateTime.now();
+    var dt2=dt1.addMinutes(5);
+</code> This method returns a new DateTime.
+    </article>
+
+    <article>
+
+      <h2>addSeconds</h2>
+
+      <code class="signature">
+
+                  new DateTime().addSeconds(number)
+                </code>
+      <code>
+
+    var dt1=DateTime.now();
+    var dt2=dt1.addSeconds(5);
+</code> This method returns a new DateTime.
+    </article>
+
+
+    <article>
+
+      <h2>add</h2>
+
+      <code class="signature">
+
+                  new DateTime().add(years, months, days, hours, minutes, seconds)
+                </code>
+      <code>
+                var dt1=DateTime.now(); var dt2=dt1.add(0, 1, 2, 3, 4, 5); 
+              </code>This method returns a new DateTime. </article>
+
+
+
+    <h2>Special considerations for months and years</h2>
+    If the day of the month on the original date is greater than the number of days in the final month, the day of the month will change to the last day in the final month.
+    <code>
+      new DateTime(2010, 0, 31); 
+      new DateTime(2010, 0, 31).addMonths(1);
+    </code>
+    <p> There are also special considerations to keep in mind when adding time that crosses over daylight saving time. If you are adding years, months, weeks, or days, the original hour will always match the added hour. Alternatively, you can use [durations](#/durations)
+      to add to DateTimes. </p>
+    <code>
+      var duration = DateTime.duration({'days' : 1}); 
+      new DateTime( [2012, 0, 31]).add(duration); 
+    </code>
+    <p>
+      when decimal values are passed for days and months, they are rounded to the nearest integer. Weeks, quarters, and years are converted to days or months, and then rounded to the nearest integer.</p>
+    <code>
+       new DateTime().add(1.5, 'months') == new DateTime().add(2, 'months') 
+       new DateTime().add(.7, 'years') == new DateTime().add(8, 'months')
+      </code>
+    </div>
+
+  </article>
+
+
+  <article>
+
+    <h2>diff</h2>
+    <div class="docs-method-prose">
+
+      <code class="signature">
+                  new DateTime().diff(DateTime|String|Number|Date|Array); 
+                  new DateTime().diff(DateTime|String|Number|Date|Array, String); 
+                  new DateTime().diff(DateTime|String|Number|Date|Array, String, Boolean);
+                </code> To get the difference in milliseconds, use `DateTime#diff` like you would use `DateTime#from`.
+      <code>
+
+                var a = new DateTime(2007, 0, 29); 
+                var b = new DateTime(2007, 0, 28); 
+                a.diff(b)
+              </code>
+
+      <p>To get the difference in another unit of measurement, pass that measurement as the second argument.</p>
+      <code>
+                var a = new DateTime(2007, 0, 29);
+                 var b = new DateTime(2007, 0, 28); 
+                 a.diff(b, 'days')
+                </code>
+      <p> The supported measurements are `years`, `months`, `weeks`, `days`, `hours`, `minutes`, and `seconds`. For ease of development,the singular forms are supported. Units of measurement other than milliseconds are available. By default, `DateTime#diff`
+        will truncate the result to zero decimal places, returning an integer. If you want a floating point number, pass`true` as the third argument.</p>
+      <code> 
+                     var a = new DateTime(2008, 9); 
+                     var b = new DateTime(2007, 0); 
+                     a.diff(b, 'years'); 
+                     a.diff(b, 'years', true); </code>
+      <p>If the DateTime is earlier than the DateTime you are passing to `DateTime.fn.diff`, the return value will be negative. </p>
+      <code>var a = new DateTime(); 
+                  var b = new DateTime().add(1, 'seconds'); 
+                  a.diff(b) b.diff(a)</code>
+      <p> An easy way to think of this is by replacing `.diff(` with a minus operator. </p>
+      <code>a.diff(b) 
+                     b.diff(a)</code>
+
+      <h2>Month and year diffs</h2>
+      <p>
+        `DateTime#diff` has some special handling for month and year diffs. It is optimized to ensure that two months with the same date are always a whole number apart. So Jan 15 to Feb 15 should be exactly 1 month. Feb 28 to Mar 28 should be exactly 1 month.
+        Feb 28 2011 to Feb 28 2012 should be exactly 1 year.</p>
+    </div>
+
+  </article>
+</body>
+
+</html>

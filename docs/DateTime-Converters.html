@@ -1,0 +1,137 @@
+<html>
+
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+
+<body>
+  <div class="Note" style="color:orange;font-style:italic">
+
+    The lastest version of this document is available on <a href="https://sylvain59650.github.io/datetime-object/">Github > datetime-object</a>
+  </div>
+
+  <div class="docs-content">
+
+    <h1>Main Contents</h1>
+    <ul>
+      <li><a href="index.html#install">Installation</a></li>
+      <li><a href="DateTime-Constructors.html">Constructors</a></li>
+      <li><a href="DateTime-Parsing.html">Parsing</a></li>
+      <li><a href="DateTime-Converters.html">Converters</a></li>
+      <li><a href="DateTime-Displays.html">Displays</a></li>
+      <li><a href="DateTime-OthersAPI.html">Others API</a></li>
+      <li>
+        <span>Annex Classes</span>
+        <ul>
+          <li><a href="TimeSpan.html">TimeSpan</a></li>
+          <li><a href="DateTime-Locale.html">Locale</a></li>
+        </ul>
+      </li>
+    </ul>
+    <article class="docs-section">
+
+      <h1>
+        <a href="#/converters">Converters Section</a></h1>
+      <nav>
+        <li>
+          <a href="#fromdate">fromDate</a></li>
+        <li>
+          <a href="#frommoment">fromMoment</a></li>
+        <li>
+          <a href="#fromobject">fromObject</a></li>
+        <li>
+          <a href="#fromunixepoch">fromUnixEpoch</a></li>
+        <li>
+          <a href="#tounixepoch">toUnixEpoch</a></li>
+        <li>
+          <a href="#todate">toDate</a></li>
+        <li>
+          <a href="#tojson">toJSON</a></li>
+        <li>
+          <a href="#toisostring">toISOString</a></li>
+        <li>
+          <a href="#toobject">toObject</a></li>
+      </nav>
+
+      <a name="fromdate"></a>
+      <h2>fromDate</h2>
+
+      <code>
+    var date=new Date();
+    var dt=DateTime.fromDate(date);
+</code>
+      <a name="fromMoment"></a>
+      <h2>fromMoment</h2>
+      Create a DateTime from a moment object
+      <code>
+  var mmt=moment();
+  var dt=DateTime.fromMoment(mmt);
+</code>
+
+      <a name="fromObject"></a>
+      <h2>fromObject</h2>
+
+      <code class="signature">
+   DateTime.fromObject{unit: value, ...});
+</code>
+
+      <code>
+    DateTime.fromObject({ hour:15, minute:10 });
+    DateTime.fromObject({ y    :2010, M     :3, d   :5, h    :15, m      :10, s      :3, ms          :123});
+    DateTime.fromObject({ year :2010, month :3, day :5, hour :15, minute :10, second :3, millisecond :123});    
+</code> You can create a DateTime by specifying some of the units in an object. Omitted units default to 0 or the current date, month, and year. `day` and `date` key both mean day-of-the-month. Note that `new Date(year, month, date)`, months are
+      0 indexed.
+      <a name="fromUnixEpoch"></a>
+      <h2>fromUnixEpoch</h2>
+      <code>
+    var timestamp=DateTime.fromUnixEpoch();
+</code>
+
+      <a name="toUnixEpoch"></a>
+      <h2>toUnixEpoch</h2>
+      <code>
+    var timestamp=DateTime.now().toUnixEpoch();
+</code>
+      <a name="toDate"></a>
+      <h2>toDate</h2>
+      <div class="docs-method-prose">
+        This will return a copy of the `Date` that the DateTime uses, so any changes to that `Date` will not cause DateTime to change. If you want to change the DateTime `Date`, see `DateTime#manipulate` or `DateTime#set`.
+      </div>
+      <a name="toJSON"></a>
+      <h2>toJSON</h2>
+      <div class="docs-method-prose">
+        When serializing an object to JSON, if there is a `DateTime` object, it will be represented as an ISO8601 string, adjusted to UTC.
+        <code>JSON.stringify({ postDate : new DateTime() });</code> If instead you would like an ISO8601 string that reflects the DateTime's `utcOffset()`, then you can modify the `toJSON` function like this:
+        <code>DateTime.fn.toJSON = function() { return this.toString(); } </code> This changes the behavior as follows:
+        <code>JSON.stringify({ postDate : new DateTime() });</code>
+
+      </div>
+      <a name="toISOString"></a>
+      <h2>toISOString</h2>
+
+      <code>
+  new DateTime().toISOString(); 
+  new DateTime().toISOString(keepOffset);
+</code> Formats a string to the ISO8601 standard. new DateTime().toISOString() Note that `.toISOString()` returns a timestamp in UTC, even if the DateTime in question is in local mode. This is done to provide consistency with the specification for
+      native JavaScript Date `.toISOString()`, as outlined in
+      <a href="https://www.ecma-international.org/ecma-262/6.0/#sec-date.prototype.toisostring">the ES2015 specification</a> .
+  </div>
+  <a name="toObject"></a>
+  <h2>toObject</h2>
+  <div class="docs-method-prose">
+
+    returns an object containing year, month, day-of-month, hour, minute, seconds, milliseconds attributes.
+    <code> new DateTime().toObject()
+      </code>
+  </div>
+  <a name="toMoment"></a>
+  <h2>toMoment</h2>
+  Create a Moment from a DateTime instance
+  <code>
+  var dt=new DateTime().toMoment();
+</code> returns an moment.
+
+
+</body>
+
+</html>

@@ -37,7 +37,7 @@ const chemins = {
 
 
 gulp.task("clean", function() {
-  return del([
+  return del( < a href = "" > < /a>
     chemins.distrib + "/*"
   ]);
 });
@@ -45,15 +45,15 @@ gulp.task("clean", function() {
 
 
 gulp.task("datetime-object.min.js", () => {
-  return gulp.src([
-      "sources/datetime-object.js"
-    ])
-    .pipe(concat("datetime-object.min.js"))
-    .pipe(babel({
-      presets: ["es2015"],
-      compact: false
-    }))
-    .pipe(gulp.dest(chemins.distrib))
+  return gulp.src( < a href = "" > < /a>
+    "sources/datetime-object.js"
+  ])
+.pipe(concat("datetime-object.min.js"))
+.pipe(babel({
+  presets: < a href = "" > < /a>"es2015"],
+  compact: false
+}))
+.pipe(gulp.dest(chemins.distrib))
 });
 
 
@@ -64,9 +64,9 @@ gulp.task("watch:datetime-object.min.js", function() {
 });
 
 
-gulp.task("default", ["datetime-object.min.js"]);
+gulp.task("default", < a href = "" > < /a>"datetime-object.min.js"]);
 
 
-gulp.task("all", ["default"]);
+    gulp.task("all", < a href = "" > < /a>"default"]);
 
-gulp.task("watch", ["watch:datetime-object.min.js"]);
+      gulp.task("watch", < a href = "" > < /a>"watch:datetime-object.min.js"]);
