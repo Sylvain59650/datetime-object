@@ -5,7 +5,7 @@
   } else if (typeof exports === "object") {
     module.exports = factory(require("moment"));
   } else {
-    DateTime = factory(moment);
+    window.DateTime = factory(moment);
   }
 }("DateTimeModule", this, function(moment) {
   "use strict";
