@@ -136,15 +136,14 @@
     nearest(dayOfWeek, direction) {
       dayOfWeek = dayOfWeek || 0;
       direction = direction || 1;
-      var mmt = this.mmt.clone();
-      var dow = mmt.day();
-      if (direction === -1) {
-        mmt.day(-7);
+      var date = this.mmt.toDate();
+      var dow = this.mmt.day();
+      var delta = 0;
+      if (direction === -1 && dayOfWeek < dow) {
+        delta = -7;
       }
-      if (dow !== dayOfWeek) {
-        mmt.day(dayOfWeek);
-      }
-      return DateTime.fromMoment(mmt);
+      date.setDate(date.getDate() + (dayOfWeek + 7 - dow) % 7 + delta);
+      return DateTime.fromDate(date);
     }
     nearestSunday(direction) {
       return this.nearest(0, direction);

@@ -10,6 +10,9 @@
       <img src="https://img.shields.io/bundlephobia/min/datetime-object.svg" />
       <img src="https://img.shields.io/badge/eslint-ok-blue.svg" />
       <a target="_blank" title="tests" href="https://sylvain59650.github.io/datetime-object/"><img src="https://img.shields.io/badge/tests-passing-brightgreen.svg" /></a>
+           <a target="_blank" title="downloads" href="https://www.jsdelivr.com/package/npm/datetime-object"><img src="https://data.jsdelivr.com/v1/package/npm/datetime-object/badge" /></a>
+    <a target="_blank" title="cdn" href="https://cdn.jsdelivr.net/npm/datetime-object/distrib/datetime-object.min.js"><img src="https://img.shields.io/badge/cdn-jsdeliv-black.svg" /></a>
+ 
       <img src="https://img.shields.io/npm/l/datetime-object.svg" />
       <img src="https://hits.dwyl.com/Sylvain59650/datetime-object.svg" />
     </div>

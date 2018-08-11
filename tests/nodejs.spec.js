@@ -65,10 +65,10 @@ console.log(dt15.day(), dt15.month(), dt15.year(), dt15.hours(), dt15.minutes(),
 
 
 var dt16 = DateTime.now();
-console.log(dt16.nearestMonday(-1).toString("ddd DD/MM/YY"));
-console.log(dt16.nearestFriday(-1).toString("ddd DD/MM/YY"));
-console.log(dt16.nearestSaturday(-1).toString("ddd DD/MM/YY"));
-console.log(dt16.nearestTuesday(-1).toString("ddd DD/MM/YY"));
+//console.log(dt16.nearestMonday(-1).toString("ddd DD/MM/YY"));
+//console.log(dt16.nearestFriday(-1).toString("ddd DD/MM/YY"));
+//console.log(dt16.nearestSaturday(-1).toString("ddd DD/MM/YY"));
+//console.log(dt16.nearestTuesday(-1).toString("ddd DD/MM/YY"));
 console.log("nearestMonday prev", dt16.nearestMonday(-1).toString("ddd DD/MM/YY"));
 console.log("nearestMonday next ", dt16.nearestMonday(1).toString("ddd DD/MM/YY"));
 console.log("nearestTuesday prev", dt16.nearestTuesday(-1).toString("ddd DD/MM/YY"));
@@ -77,7 +77,7 @@ console.log("nearestFriday prev", dt16.nearestFriday(-1).toString("ddd DD/MM/YY"
 console.log("nearestFriday next ", dt16.nearestFriday(1).toString("ddd DD/MM/YY"));
 console.log("nearestSunday next ", dt16.nearestSunday(1).toString("ddd DD/MM/YY"));
 console.log("nearestSunday prev ", dt16.nearestSunday(-1).toString("ddd DD/MM/YY"));
-
+console.log("today is always ", dt16.toString("ddd DD/MM/YY"));
 
 var dt17 = DateTime.today().addDays(1);
 var dt18 = DateTime.today();
