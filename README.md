@@ -20,6 +20,8 @@ dateTime-object  was created to manipulate dates and times easily in javascript.
 
 This API was designed to work both with all browsers and with Node.js.
 It's a refactoring of [momentjs](https://momentjs.com/) for clean API and working with Objects.
+dateTime-object is not mutable except the methods to update current object explicitly:
+<ul><li>day(nb)</li><li>month(nb)</li><li>year(nb)</li><li>hours(nb)</li><li>minutes(nb)</li><li>seconds(nb)</li><li>milliSeconds(nb)</ul>
 It requires moment.
 
 
@@ -27,3 +29,7 @@ It requires moment.
  
   The lastest version of this document is available on [Github > datetime-object](https://sylvain59650.github.io/datetime-object/)
 </div>
+
+#usage
+
+<a href="">API</a>
