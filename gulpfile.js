@@ -17,22 +17,18 @@ gulp.task("datetime-object.min.js", () => {
     .pipe(concat("datetime-object.min.js"))
     .pipe(babel({
       presets: ["es2015"],
-      compact: false
+      compact: true
     }))
     .pipe(gulp.dest(chemins.distrib))
 });
 
 
 gulp.task("watch:datetime-object.min.js", function() {
-  watch("./sources/*.js", function() {
-    gulp.run("datetime-object.min.js");
-  });
+  watch("./sources/*.js", gulp.series("datetime-object.min.js"));
 });
 
 
-gulp.task("default", ["datetime-object.min.js"]);
+gulp.task("default", gulp.series("datetime-object.min.js"));
 
 
-gulp.task("all", ["default"]);
-
-gulp.task("watch", ["watch:datetime-object.min.js"]);
+gulp.task("watch", gulp.series("watch:datetime-object.min.js"));

@@ -38,7 +38,7 @@
       return DateTime.fromMoment(this.mmt.clone().add(nb * 24, "hours"));
     }
     addMonths(nb) {
-      return DateTime.fromMoment(this.mmt.add(nb, "months"));
+      return DateTime.fromMoment(this.mmt.clone().add(nb, "months"));
     }
     addYears(nb) {
       return DateTime.fromMoment(this.mmt.clone().add(nb, "years"));
@@ -50,7 +50,7 @@
       return DateTime.fromMoment(this.mmt.clone().add(nb * 60, "seconds"));
     }
     addSeconds(nb) {
-      return DateTime.fromMoment(this.mmt.add(nb, "seconds"));
+      return DateTime.fromMoment(this.mmt.clone().add(nb, "seconds"));
     }
     add(years, months, days, hours, minutes, seconds) {
       var mmt = this.mmt.clone();

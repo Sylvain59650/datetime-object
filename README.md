@@ -25,11 +25,23 @@ dateTime-object is not mutable except for the methods to update current object e
 It requires moment.
 
 
+## after install
+```html
+<script src="./node_modules/moment/min/moment-with-locales.min.js"></script>
+<script src="./node_modules/datetime-object/distrib/datetime-object.min.js"></script>
+```
+
+## without install
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/moment@2.23.0/min/moment-with-locales.min.js" integrity="sha256-2upzq+m3oG9Q4Xye6pGvLrXgrzOKtTgR1D2GCLUzL2o=" crossorigin="anonymous"></script>
  <div class="Note" style="color:orange;font-style:italic">
+<script src="https://cdn.jsdelivr.net/npm/datetime-object@0.9.4/distrib/datetime-object.min.js" integrity="sha256-PQj2taT+aXrQoKeoYbun6uYbuc1Qo7ZAc63xw/A2oIE=" crossorigin="anonymous"></script>
+```
  
   The lastest version of this document is available on [Github > datetime-object](https://sylvain59650.github.io/datetime-object/)
 </div>
 
-#usage
+# usage
 
 <a href="https://sylvain59650.github.io/datetime-object/">API</a>

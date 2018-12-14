@@ -16,3 +16,9 @@ test("DateTime-parse", t => {
     t.deepEqual(result.toString(input.opt.format), input.i, input.i + " fail");
   }
 });
+
+
+test("DateTime-constructor", t => {
+  var dt = new DateTime(2018, 1, 12, 5, 12, 33);
+  t.deepEqual(dt.toString("DD/MM/YY HH:mm:ss"), "12/01/18 05:12:33");
+});
